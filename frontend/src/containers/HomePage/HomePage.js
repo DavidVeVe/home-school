@@ -9,7 +9,7 @@ import TeacherPage from '../Teacher/Teacher';
 
 const HomePage = () => {
 	const [typeAccount, setTypeAccount] = useState('');
-	const token = true;
+	const token = false;
 
 	const handleField = (event) => {
 		const {

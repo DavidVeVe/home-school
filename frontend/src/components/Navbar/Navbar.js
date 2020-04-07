@@ -1,31 +1,45 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Nav.css';
 
 function Navbar() {
-	const token = true;
-	const tipoDeCuenta = 'Profesor';
+	const token = false;
+	const tipoDeCuenta = '';
+
+	const [login, setLogin] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleLoginInput = (event) => {
+		setLogin(event.target.value);
+	};
+
+	const handlePasswordInput = (event) => {
+		setPassword(event.target.value);
+	};
 
 	let navbar_components = null;
 	if (!token) {
 		navbar_components = (
 			<Fragment>
 				<input
+					onChange={handleLoginInput}
 					className='form-control mr-sm-2'
-					type='search'
+					type='text'
 					placeholder='Email*'
 					aria-label='Search'
+					value={login}
 				/>
 				<input
+					onChange={handlePasswordInput}
 					className='form-control mr-sm-2'
-					type='search'
+					type='password'
 					placeholder='Password*'
+					value={password}
 					aria-label='Search'
 				/>
-				<button className='btn btn-dark my-2 my-sm-0' type='submit'>
-					Login
-				</button>
+				<button className='btn btn-dark my-2 my-sm-0'>Iniciar Sesion</button>
 			</Fragment>
 		);
 	}
@@ -87,4 +101,8 @@ function Navbar() {
 	);
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {};
+
+const mapDispatchToProps = {};
+
+export default connect(null, null)(Navbar);
