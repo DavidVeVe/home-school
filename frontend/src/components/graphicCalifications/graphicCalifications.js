@@ -9,7 +9,13 @@ const GraphicCalifications = () => {
 
 	return (
 		<div className='donut'>
-			<Chart options={options} series={series} type='donut' width='380' />
+			<Chart
+				options={options}
+				series={series}
+				labels={labels}
+				type='donut'
+				width='380'
+			/>
 		</div>
 	);
 };

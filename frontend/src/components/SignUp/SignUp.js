@@ -19,7 +19,17 @@ function SignUp({ onchange, ...props }) {
 	return (
 		<form onSubmit={handleRegisterSubmit}>
 			<div className='form-row'>
-				<div className='form-group col-md-6'>
+				<div className='form-group col-md-4'>
+					<label htmlFor='inputEmail4'>Nombre Completo</label>
+					<input
+						onChange={(event) => setEmail(event.target.value)}
+						required
+						value={email}
+						type='email'
+						className='form-control'
+					/>
+				</div>
+				<div className='form-group col-md-4'>
 					<label htmlFor='inputEmail4'>Correo Electronico</label>
 					<input
 						onChange={(event) => setEmail(event.target.value)}
@@ -29,7 +39,7 @@ function SignUp({ onchange, ...props }) {
 						className='form-control'
 					/>
 				</div>
-				<div className='form-group col-md-6'>
+				<div className='form-group col-md-4'>
 					<label htmlFor='inputPassword4'>Contraseña</label>
 					<input
 						onChange={(event) => setPassword(event.target.value)}
@@ -40,30 +50,39 @@ function SignUp({ onchange, ...props }) {
 						id='inputPassword4'
 					/>
 				</div>
-			</div>
-			<div className='form-group'>
-				<label htmlFor='inputAddress'>Numero Telefonico</label>
-				<input
-					onChange={(event) => setPhone(event.target.value)}
-					required
-					value={phone}
-					type='text'
-					className='form-control'
-					id='inputAddress'
-					placeholder='1234 Main St'
-				/>
-			</div>
-			<div className='form-group'>
-				<label htmlFor='inputAddress'>Ciudad</label>
-				<input
-					onChange={(event) => setCity(event.target.value)}
-					required
-					value={city}
-					type='text'
-					className='form-control'
-					id='inputAddress'
-					placeholder='1234 Main St'
-				/>
+				<div className='form-group col-md-4'>
+					<label htmlFor='inputPassword4'>Numero Telefonico</label>
+					<input
+						onChange={(event) => setPassword(event.target.value)}
+						required
+						value={password}
+						type='password'
+						className='form-control'
+						id='inputPassword4'
+					/>
+				</div>
+				<div className='form-group col-md-4'>
+					<label htmlFor='inputPassword4'>Estado</label>
+					<input
+						onChange={(event) => setPassword(event.target.value)}
+						required
+						value={password}
+						type='password'
+						className='form-control'
+						id='inputPassword4'
+					/>
+				</div>
+				<div className='form-group col-md-4'>
+					<label htmlFor='inputPassword4'>Municipio</label>
+					<input
+						onChange={(event) => setPassword(event.target.value)}
+						required
+						value={password}
+						type='password'
+						className='form-control'
+						id='inputPassword4'
+					/>
+				</div>
 			</div>
 			<fieldset
 				onChange={(event) => setAccType(event.target.value)}
