@@ -50,6 +50,16 @@ function Navbar() {
             Crear clase
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link SignOut"
+            to="/"
+            tabIndex="-1"
+            aria-disabled="true"
+          >
+            Sign Out
+          </Link>
+        </li>
       </Fragment>
     );
   }

@@ -97,6 +97,7 @@ function Leasons() {
         </div>
       </div>
       <div>
+        <hr />
         <h1>Calificaciones Generales</h1>
         <h4>Alumnos</h4>
       </div>

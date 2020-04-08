@@ -1,7 +1,7 @@
 import React from "react";
 
 import Leason from "../Leasons/Leasons";
-import Percentage from "../../components/Percentage/Percentage";
+import graphicCalifications from "../../components/graphicCalifications/graphicCalifications";
 
 const Teacher = () => {
   return (
@@ -9,7 +9,7 @@ const Teacher = () => {
       <h2>Teacher Page</h2>
       <div>
         <Leason />
-        <Percentage />
+        <graphicCalifications />
         <h4>0% - 100%</h4>
       </div>
     </div>
