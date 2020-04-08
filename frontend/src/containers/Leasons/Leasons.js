@@ -1,4 +1,6 @@
 import React from 'react';
+import './Leasons.css';
+import Leason from './Leason/Leason';
 
 function Leasons() {
 	const clases = [
@@ -20,20 +22,25 @@ function Leasons() {
 			profesor: 'jordi niño',
 			materias: ['español', 'matematicas'],
 		},
+		{
+			id: 4,
+			nombre: 'grupoc',
+			profesor: 'jordi niño',
+			materias: ['español', 'matematicas'],
+		},
 	];
 
+	const ClassList = clases.map((clase) => <Leason key={clase.id} />);
+
 	return (
-		<div>
-			<h2>clases</h2>
-			{clases.map((clase) => (
-				<div>
-					<h2>{clase.nombre}</h2>
-					{clase.materias.map((materia) => (
-						<p>{materia}</p>
-					))}
-				</div>
-			))}
-		</div>
+		<>
+			<div className='card-deck'>{ClassList}</div>
+			<div>
+				<hr />
+				<h1>Calificaciones Generales</h1>
+				<h4>Alumnos</h4>
+			</div>
+		</>
 	);
 }
 

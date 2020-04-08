@@ -10,7 +10,6 @@ import TeacherPage from '../Teacher/Teacher';
 const HomePage = () => {
 	const [typeAccount, setTypeAccount] = useState('');
 	const token = false;
-
 	const handleField = (event) => {
 		const {
 			target: { value },
@@ -23,7 +22,7 @@ const HomePage = () => {
 			<main>
 				{!token ? (
 					<Fragment>
-						<h2>IMAGEN</h2>
+						<h2>LOGO</h2>
 						<SignUp onchange={handleField} />
 					</Fragment>
 				) : (

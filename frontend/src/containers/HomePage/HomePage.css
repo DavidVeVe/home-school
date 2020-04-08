@@ -1,5 +1,14 @@
+body {
+  background-color: #e9ebee;
+  min-height: 100vh;
+}
+
+input.form-control {
+  box-shadow: 4px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
 .homepage main {
-	margin: 20px 0;
-	display: flex;
-	justify-content: space-around;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
 }
