@@ -49,19 +49,10 @@ function Navbar() {
 		teacherNav = (
 			<Fragment>
 				<li className='nav-item'>
-					<img src='' alt='IMAGEN' />
+					<img className='avatar' src='' alt='AVATAR' />
 				</li>
 				<li className='nav-item'>
-					<h2 className='text-white h5'>NOMBRE PROFESOR</h2>
-				</li>
-				<li className='nav-item'>
-					<Link
-						className='nav-link '
-						to='/leasons'
-						tabindex='-1'
-						aria-disabled='true'>
-						Clases
-					</Link>
+					<h3 className='text-white h5'>NOMBRE PROFESOR</h3>
 				</li>
 				<li className='nav-item'>
 					<Link
@@ -70,6 +61,15 @@ function Navbar() {
 						tabIndex='-1'
 						aria-disabled='true'>
 						Crear clase
+					</Link>
+				</li>
+				<li className='nav-item'>
+					<Link
+						className='nav-link SignOut'
+						to='/'
+						tabIndex='-1'
+						aria-disabled='true'>
+						Sign Out
 					</Link>
 				</li>
 			</Fragment>
