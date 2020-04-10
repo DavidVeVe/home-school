@@ -1,31 +1,45 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Nav.css';
 
 function Navbar() {
-	const token = true;
-	const tipoDeCuenta = 'Profesor';
+	const token = false;
+	const tipoDeCuenta = '';
+
+	const [login, setLogin] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleLoginInput = (event) => {
+		setLogin(event.target.value);
+	};
+
+	const handlePasswordInput = (event) => {
+		setPassword(event.target.value);
+	};
 
 	let navbar_components = null;
 	if (!token) {
 		navbar_components = (
 			<Fragment>
 				<input
+					onChange={handleLoginInput}
 					className='form-control mr-sm-2'
-					type='search'
+					type='text'
 					placeholder='Email*'
 					aria-label='Search'
+					value={login}
 				/>
 				<input
+					onChange={handlePasswordInput}
 					className='form-control mr-sm-2'
-					type='search'
+					type='password'
 					placeholder='Password*'
+					value={password}
 					aria-label='Search'
 				/>
-				<button className='btn btn-dark my-2 my-sm-0' type='submit'>
-					Login
-				</button>
+				<button className='btn btn-dark my-2 my-sm-0'>Iniciar Sesion</button>
 			</Fragment>
 		);
 	}
@@ -35,19 +49,10 @@ function Navbar() {
 		teacherNav = (
 			<Fragment>
 				<li className='nav-item'>
-					<img src='' alt='IMAGEN' />
+					<img className='avatar' src='' alt='AVATAR' />
 				</li>
 				<li className='nav-item'>
-					<h2 className='text-white h5'>NOMBRE PROFESOR</h2>
-				</li>
-				<li className='nav-item'>
-					<Link
-						className='nav-link '
-						to='/leasons'
-						tabindex='-1'
-						aria-disabled='true'>
-						Clases
-					</Link>
+					<h3 className='text-white h5'>NOMBRE PROFESOR</h3>
 				</li>
 				<li className='nav-item'>
 					<Link
@@ -56,6 +61,15 @@ function Navbar() {
 						tabIndex='-1'
 						aria-disabled='true'>
 						Crear clase
+					</Link>
+				</li>
+				<li className='nav-item'>
+					<Link
+						className='nav-link SignOut'
+						to='/'
+						tabIndex='-1'
+						aria-disabled='true'>
+						Sign Out
 					</Link>
 				</li>
 			</Fragment>
@@ -87,4 +101,8 @@ function Navbar() {
 	);
 }
 
-export default Navbar;
+/* const mapStateToProps = (state) => {};
+
+const mapDispatchToProps = {}; */
+
+export default connect(null, null)(Navbar);
