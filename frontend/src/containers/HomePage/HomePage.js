@@ -7,7 +7,6 @@ import SignUp from "../../components/SignUp/SignUp";
 import Footer from "../../components/Footer/Footer";
 import About from "../../components/About/About";
 import TeacherPage from "../Teacher/Teacher";
-import Parents from "../Parents/Parents";
 
 const HomePage = (props) => {
   return (
@@ -29,7 +28,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: true,
+  token: false,
 });
 
 export default connect(mapStateToProps)(HomePage);
