@@ -5,7 +5,13 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer">
-      <h2>FOOTER</h2>
+      <footer className="py-5 bg-dark">
+        <div className="container">
+          <p className="m-0 text-center text-white">
+            Copyright &copy; Your Website 2019
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };

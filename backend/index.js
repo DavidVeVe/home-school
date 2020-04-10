@@ -12,9 +12,9 @@ const PORT = app.get('PORT');
 // Database Configuration
 const urlDatabase = process.env.DB_URL;
 mongoose.connect(
-	urlDatabase,
-	{ useNewUrlParser: true, useUnifiedTopology: true },
-	() => console.log('Database Running')
+  urlDatabase,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => console.log('Database Running')
 );
 
 // Middlewares
@@ -26,5 +26,5 @@ app.use('/', authRoute);
 
 // App Listen
 app.listen(PORT, () => {
-	console.log('Hello guys, the app is working!');
+  console.log('Hello guys, the app is working!');
 });

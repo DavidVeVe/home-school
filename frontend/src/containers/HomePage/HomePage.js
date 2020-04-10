@@ -9,26 +9,26 @@ import About from '../../components/About/About';
 import TeacherPage from '../Teacher/Teacher';
 
 const HomePage = (props) => {
-	return (
-		<div className='homepage'>
-			<main>
-				{!props.token ? (
-					<Fragment>
-						<h2>LOGO</h2>
-						<SignUp />
-					</Fragment>
-				) : (
-					<TeacherPage />
-				)}
-			</main>
-			<About />
-			<Footer />
-		</div>
-	);
+  return (
+    <div className='homepage'>
+      <main>
+        {!props.token ? (
+          <Fragment>
+            <h2>LOGO</h2>
+            <SignUp />
+          </Fragment>
+        ) : (
+          <TeacherPage />
+        )}
+      </main>
+      <About />
+      <Footer />
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
-	token: false,
+  token: false,
 });
 
 export default connect(mapStateToProps)(HomePage);
