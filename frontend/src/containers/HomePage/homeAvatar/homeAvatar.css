@@ -1,0 +1,10 @@
+.avatarContainer {
+  width: 9rem;
+  height: 10rem;
+  margin: 9px;
+  border-radius: 5px;
+  background-color: #365899;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

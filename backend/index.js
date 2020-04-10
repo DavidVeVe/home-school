@@ -6,7 +6,7 @@ require('dotenv/config');
 
 const app = express();
 // Configurations
-app.set('PORT', 3000 || process.env.PORT);
+app.set('PORT', 3001 || process.env.PORT);
 const PORT = app.get('PORT');
 
 // Database Configuration

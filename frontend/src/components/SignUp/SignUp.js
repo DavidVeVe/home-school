@@ -5,8 +5,9 @@ import * as actions from '../../redux/actions/';
 import './SignUp.css';
 
 function SignUp(props) {
-  const [userData, setUserData] = useState({
-    fullname: '',
+  const [registerUser, setRegisterUser] = useState({
+    firstname: '',
+    lastname: '',
     email: '',
     password: '',
     phone: '',
@@ -15,121 +16,135 @@ function SignUp(props) {
     account: '',
   });
 
-  const handleUserData = (event) => {
-    setUserData((prevState) => ({
+  const handleRegisterUser = (event) => {
+    event.persist();
+    setRegisterUser((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
   };
 
-  const handleRegisterUser = (event) => {
+  const handleSubmitAuth = (event) => {
     event.preventDefault();
-    props.authRegisterUser(userData);
+    props.authUser('Register', registerUser);
   };
 
   return (
-    <form onSubmit={handleRegisterUser}>
-      <div className='form-row'>
-        <div className='form-group col-md-4'>
-          <label htmlFor='inputEmail4'>Nombre Completo</label>
-          <input
-            onChange={handleUserData}
-            required
-            value={userData.fullname}
-            type='email'
-            className='form-control'
-          />
-        </div>
-        <div className='form-group col-md-4'>
-          <label htmlFor='inputEmail4'>Correo Electronico</label>
-          <input
-            onChange={handleUserData}
-            required
-            value={userData.email}
-            type='email'
-            className='form-control'
-          />
-        </div>
-        <div className='form-group col-md-4'>
-          <label htmlFor='inputPassword4'>Contraseña</label>
-          <input
-            onChange={handleUserData}
-            required
-            value={userData.password}
-            type='password'
-            className='form-control'
-            id='inputPassword4'
-          />
-        </div>
-        <div className='form-group col-md-4'>
-          <label htmlFor='inputPassword4'>Numero Telefonico</label>
-          <input
-            onChange={handleUserData}
-            required
-            value={userData.phone}
-            type='password'
-            className='form-control'
-            id='inputPassword4'
-          />
-        </div>
-        <div className='form-group col-md-4'>
-          <label htmlFor='inputPassword4'>Estado</label>
-          <input
-            onChange={handleUserData}
-            required
-            value={userData.state}
-            type='password'
-            className='form-control'
-            id='inputPassword4'
-          />
-        </div>
-        <div className='form-group col-md-4'>
-          <label htmlFor='inputPassword4'>Municipio</label>
-          <input
-            onChange={handleUserData}
-            required
-            value={userData.country}
-            type='password'
-            className='form-control'
-            id='inputPassword4'
-          />
-        </div>
-      </div>
-      <fieldset onChange={handleUserData} className='form-group'>
-        <div className='row'>
-          <legend className='col-form-label col-sm-2 pt-0'>
-            Tipo de cuenta
-          </legend>
-          <div className='col-sm-10'>
-            <div className='form-check'>
+    <section className='homeForm__container'>
+      <h1>Crea una cuenta</h1>
+      <h5>Es rápido y fácil</h5>
+      <form style={{ width: '100%' }} onSubmit={handleSubmitAuth}>
+        <div className='form-row homeForm'>
+          <div className='form-group  nameInput'>
+            <input
+              value={registerUser.firstname}
+              onChange={handleRegisterUser}
+              required
+              name='fistname'
+              placeholder='Nombre'
+              type='text'
+              className='form-control nameInput'
+            />
+          </div>
+          <div className='form-group  nameInput'>
+            <input
+              value={registerUser.lastname}
+              onChange={handleRegisterUser}
+              required
+              name='lastname'
+              placeholder='Apellido'
+              type='text'
+              className='form-control nameInput'
+            />
+          </div>
+          <div className='form-group  phoneInput'>
+            <input
+              value={registerUser.phone}
+              onChange={handleRegisterUser}
+              required
+              name='phone'
+              type='tel'
+              placeholder='Numero de telefono'
+              className='form-control '
+            />
+          </div>
+          <div className='form-group  cityInput'>
+            <input
+              value={registerUser.state}
+              onChange={handleRegisterUser}
+              required
+              name='state'
+              placeholder='Ciudad'
+              type='text'
+              className='form-control'
+            />
+          </div>
+          <div className='form-group  cityInput'>
+            <input
+              value={registerUser.country}
+              onChange={handleRegisterUser}
+              required
+              name='country'
+              placeholder='Municipio'
+              type='text'
+              className='form-control'
+            />
+          </div>
+          <div className='form-group  emailInput'>
+            <input
+              onChange={handleRegisterUser}
+              value={registerUser.email}
+              required
+              name='email'
+              placeholder='Correo electronico'
+              type='email'
+              className='form-control '
+            />
+          </div>
+          <div className='form-group  passwordInput'>
+            <input
+              onChange={handleRegisterUser}
+              required
+              name='password'
+              value={registerUser.password}
+              placeholder='Contraseña'
+              type='password'
+              className='form-control '
+            />
+          </div>
+          <div className='form-group  passwordInput'>
+            <input
+              required
+              name='confirm-password'
+              placeholder='Confirmar contraseña'
+              type='password'
+              className='form-control '
+            />
+          </div>
+          <div className='checks__container'>
+            <div>
+              <label htmlFor='parent'>Tutor</label>
               <input
-                className='form-check-input'
+                onChange={handleRegisterUser}
+                value='Parent'
                 type='radio'
-                name='gridRadios'
-                id='gridRadios1'
-                value='Profesor'
+                name='account'
               />
-              <label className='form-check-label' htmlFor='gridRadios1'>
-                Profesor
-              </label>
             </div>
-            <div className='form-check'>
+            <div>
+              <label htmlFor='teacher'>Profesor</label>
               <input
-                className='form-check-input'
+                onChange={handleRegisterUser}
+                value='Teacher'
                 type='radio'
-                name='gridRadios'
-                id='gridRadios2'
-                value='Padre'
+                name='account'
               />
-              <label className='form-check-label' htmlFor='gridRadios2'>
-                Padre
-              </label>
             </div>
           </div>
         </div>
-      </fieldset>
-      <button className='btn btn-primary'>Registrarse</button>
-    </form>
+        <button className='btn btn-primary signup__btn'>Registrarse</button>
+      </form>
+    </section>
   );
 }
 
