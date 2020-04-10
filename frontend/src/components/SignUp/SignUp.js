@@ -1,30 +1,41 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/';
 
 import './SignUp.css';
 
-function SignUp({ onchange, ...props }) {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [phone, setPhone] = useState('');
-	const [city, setCity] = useState('');
-	const [accType, setAccType] = useState('');
+function SignUp(props) {
+	const [userData, setUserData] = useState({
+		fullname: '',
+		email: '',
+		password: '',
+		phone: '',
+		state: '',
+		country: '',
+		account: '',
+	});
 
-	const handleRegisterSubmit = (event) => {
+	const handleUserData = (event) => {
+		setUserData((prevState) => ({
+			...prevState,
+			[event.target.name]: event.target.value,
+		}));
+	};
+
+	const handleRegisterUser = (event) => {
 		event.preventDefault();
-		props.authRegisterUser({ email, password, accType });
+		props.authRegisterUser(userData);
 	};
 
 	return (
-		<form onSubmit={handleRegisterSubmit}>
+		<form onSubmit={handleRegisterUser}>
 			<div className='form-row'>
 				<div className='form-group col-md-4'>
 					<label htmlFor='inputEmail4'>Nombre Completo</label>
 					<input
-						onChange={(event) => setEmail(event.target.value)}
+						onChange={handleUserData}
 						required
-						value={email}
+						value={userData.fullname}
 						type='email'
 						className='form-control'
 					/>
@@ -32,9 +43,9 @@ function SignUp({ onchange, ...props }) {
 				<div className='form-group col-md-4'>
 					<label htmlFor='inputEmail4'>Correo Electronico</label>
 					<input
-						onChange={(event) => setEmail(event.target.value)}
+						onChange={handleUserData}
 						required
-						value={email}
+						value={userData.email}
 						type='email'
 						className='form-control'
 					/>
@@ -42,9 +53,9 @@ function SignUp({ onchange, ...props }) {
 				<div className='form-group col-md-4'>
 					<label htmlFor='inputPassword4'>Contraseña</label>
 					<input
-						onChange={(event) => setPassword(event.target.value)}
+						onChange={handleUserData}
 						required
-						value={password}
+						value={userData.password}
 						type='password'
 						className='form-control'
 						id='inputPassword4'
@@ -53,9 +64,9 @@ function SignUp({ onchange, ...props }) {
 				<div className='form-group col-md-4'>
 					<label htmlFor='inputPassword4'>Numero Telefonico</label>
 					<input
-						onChange={(event) => setPassword(event.target.value)}
+						onChange={handleUserData}
 						required
-						value={password}
+						value={userData.phone}
 						type='password'
 						className='form-control'
 						id='inputPassword4'
@@ -64,9 +75,9 @@ function SignUp({ onchange, ...props }) {
 				<div className='form-group col-md-4'>
 					<label htmlFor='inputPassword4'>Estado</label>
 					<input
-						onChange={(event) => setPassword(event.target.value)}
+						onChange={handleUserData}
 						required
-						value={password}
+						value={userData.state}
 						type='password'
 						className='form-control'
 						id='inputPassword4'
@@ -75,18 +86,16 @@ function SignUp({ onchange, ...props }) {
 				<div className='form-group col-md-4'>
 					<label htmlFor='inputPassword4'>Municipio</label>
 					<input
-						onChange={(event) => setPassword(event.target.value)}
+						onChange={handleUserData}
 						required
-						value={password}
+						value={userData.country}
 						type='password'
 						className='form-control'
 						id='inputPassword4'
 					/>
 				</div>
 			</div>
-			<fieldset
-				onChange={(event) => setAccType(event.target.value)}
-				className='form-group'>
+			<fieldset onChange={handleUserData} className='form-group'>
 				<div className='row'>
 					<legend className='col-form-label col-sm-2 pt-0'>
 						Tipo de cuenta
@@ -124,10 +133,8 @@ function SignUp({ onchange, ...props }) {
 	);
 }
 
-/* const mapStateToProps = (state) => ({}); */
-
 const mapDispatchToProps = {
-	authRegisterUser: actions.authRegisterUser,
+	authUser: actions.authUser,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

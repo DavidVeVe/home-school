@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import './HomePage.css';
 
@@ -7,23 +8,14 @@ import Footer from '../../components/Footer/Footer';
 import About from '../../components/About/About';
 import TeacherPage from '../Teacher/Teacher';
 
-const HomePage = () => {
-	const [typeAccount, setTypeAccount] = useState('');
-	const token = false;
-	const handleField = (event) => {
-		const {
-			target: { value },
-		} = event;
-		setTypeAccount(value);
-	};
-
+const HomePage = (props) => {
 	return (
 		<div className='homepage'>
 			<main>
-				{!token ? (
+				{!props.token ? (
 					<Fragment>
 						<h2>LOGO</h2>
-						<SignUp onchange={handleField} />
+						<SignUp />
 					</Fragment>
 				) : (
 					<TeacherPage />
@@ -35,4 +27,8 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+	token: false,
+});
+
+export default connect(mapStateToProps)(HomePage);
