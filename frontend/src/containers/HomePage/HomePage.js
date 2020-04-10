@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import './HomePage.css';
 
 import SignUp from '../../components/SignUp/SignUp';
-import Footer from '../../components/Footer/Footer';
-import About from '../../components/About/About';
 import TeacherPage from '../Teacher/Teacher';
+import HomeAvatar from './homeAvatar/homeAvatar';
 
 const HomePage = (props) => {
+<<<<<<< HEAD
   return (
     <div className='homepage'>
       <main>
@@ -25,6 +25,29 @@ const HomePage = (props) => {
       <Footer />
     </div>
   );
+=======
+	return (
+		<div>
+			<main>
+				{!props.token ? (
+					<section className='homePage'>
+						<div className='homeAvatar'>
+							<h1>Inicio de sesión recientes</h1>
+							<section className='homeAvatar__container'>
+								<HomeAvatar />
+								<HomeAvatar />
+								<HomeAvatar />
+							</section>
+						</div>
+						<SignUp />
+					</section>
+				) : (
+					<TeacherPage />
+				)}
+			</main>
+		</div>
+	);
+>>>>>>> 7c75087367a4562a59a68aba1d958305706120c7
 };
 
 const mapStateToProps = (state) => ({
