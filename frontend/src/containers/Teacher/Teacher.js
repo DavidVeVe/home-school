@@ -1,7 +1,7 @@
 import React from "react";
 import "./Teacher.css";
 
-import Leason from "../Leasons/Leasons";
+import Leasons from "../Leasons/Leasons";
 import GraphicCalifications from "../../components/GraphicCalifications/GraphicCalifications";
 
 const Teacher = () => {
@@ -9,7 +9,7 @@ const Teacher = () => {
     <div>
       <h2>Teacher Page</h2>
       <div>
-        <Leason />
+        <Leasons />
         <div className="graficas">
           <GraphicCalifications title="Grupo" />
           <GraphicCalifications title="Materias" />

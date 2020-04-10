@@ -10,9 +10,10 @@ import CreateClass from "./containers/CreateClass/CreateClass";
 import HomePage from "./containers/HomePage/HomePage";
 import Leasons from "./containers/Leasons/Leasons";
 import Childs from "./containers/Childs/Childs";
+import AddChild from "./containers/AddChild/AddChild";
+import Settings from "./containers/Settings/Settings";
 
 import store from "./redux/configStore";
-import AddChild from "./containers/AddChild/AddChild";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/" component={HomePage} />
             <Route path="/create-class" component={CreateClass} />
             <Route path="/addChild" component={AddChild} />
+            <Route path="/settings" component={Settings} />
             <Route path="/leasons" component={Leasons} />
             <Route path="/:child" component={Childs} />
           </Switch>

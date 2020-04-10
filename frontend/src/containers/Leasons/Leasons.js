@@ -2,35 +2,37 @@ import React from "react";
 import "./Leasons.css";
 import Leason from "./Leason/Leason";
 
-function Leasons() {
+function Leasons(props) {
   const clases = [
     {
       id: 1,
       nombre: "grupoa",
-      profesor: "jordi niño",
+      profesor: "Alvaro",
       materias: ["español", "matematicas"],
     },
     {
       id: 2,
       nombre: "grupob",
-      profesor: "jordi niño",
+      profesor: "Jordi",
       materias: ["español", "matematicas"],
     },
     {
       id: 3,
       nombre: "grupoc",
-      profesor: "jordi niño",
+      profesor: "David",
       materias: ["español", "matematicas"],
     },
     {
       id: 4,
       nombre: "grupoc",
-      profesor: "jordi niño",
+      profesor: "El joven",
       materias: ["español", "matematicas"],
     },
   ];
 
-  const ClassList = clases.map((clase) => <Leason key={clase.id} />);
+  const ClassList = clases.map((clase) => (
+    <Leason key={clase.id} profesor={clase.profesor} />
+  ));
 
   return (
     <>

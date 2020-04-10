@@ -88,6 +88,16 @@ function Navbar() {
         <li className="nav-item">
           <Link
             className="nav-link "
+            to="/settings"
+            tabIndex="-1"
+            aria-disabled="true"
+          >
+            Configuracion
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link "
             to="/addChild"
             tabIndex="-1"
             aria-disabled="true"
