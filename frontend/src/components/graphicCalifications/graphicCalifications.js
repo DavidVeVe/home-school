@@ -3,8 +3,8 @@ import Chart from 'react-apexcharts';
 import './GraphicCalifications.css';
 
 const GraphicCalifications = () => {
-	const [series, setSeries] = useState([52, 0, 36, 33, 15, 25]);
-	const [options, setOptions] = useState({});
+	const [series] = useState([52, 0, 36, 33, 15, 25]);
+	const [options] = useState({});
 	const [labels] = useState(['Apples', 'Oranges', 'Berries', 'Grapes']);
 
 	return (
