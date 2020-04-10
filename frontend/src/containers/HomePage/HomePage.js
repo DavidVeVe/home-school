@@ -32,7 +32,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: true,
+  token: false,
 });
 
 export default connect(mapStateToProps)(HomePage);
