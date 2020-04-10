@@ -142,8 +142,8 @@ function Navbar() {
   );
 }
 
-const mapStateToProps = (state) => {};
+/* const mapStateToProps = (state) => {};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {}; */
 
 export default connect(null, null)(Navbar);

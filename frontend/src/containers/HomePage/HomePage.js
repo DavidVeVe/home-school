@@ -1,45 +1,34 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
-import "./HomePage.css";
+import './HomePage.css';
 
-import SignUp from "../../components/SignUp/SignUp";
-import Footer from "../../components/Footer/Footer";
-import About from "../../components/About/About";
-import TeacherPage from "../Teacher/Teacher";
-import Parents from "../Parents/Parents";
+import SignUp from '../../components/SignUp/SignUp';
+import Footer from '../../components/Footer/Footer';
+import About from '../../components/About/About';
+import TeacherPage from '../Teacher/Teacher';
 
-const HomePage = () => {
-  const [typeAccount, setTypeAccount] = useState("");
-  const token = true;
-  const tipoDeCuenta = "Padre";
-  const handleField = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setTypeAccount(value);
-  };
-
-  let typeHome = null;
-  if (tipoDeCuenta === "Profesor") {
-    typeHome = <TeacherPage />;
-  } else if (tipoDeCuenta === "Padre") {
-    typeHome = <Parents />;
-  } else if (!token && !tipoDeCuenta) {
-    typeHome = (
-      <Fragment>
-        <h2>LOGO</h2>
-        <SignUp onchange={handleField} />
-      </Fragment>
-    );
-  }
-
+const HomePage = (props) => {
   return (
-    <div className="homepage">
-      <main>{typeHome}</main>
+    <div className='homepage'>
+      <main>
+        {!props.token ? (
+          <Fragment>
+            <h2>LOGO</h2>
+            <SignUp />
+          </Fragment>
+        ) : (
+          <TeacherPage />
+        )}
+      </main>
       <About />
       <Footer />
     </div>
   );
 };
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+  token: false,
+});
+
+export default connect(mapStateToProps)(HomePage);
