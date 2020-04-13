@@ -1,4 +1,6 @@
 import React from "react";
+import Switch from "@material-ui/core/Switch";
+
 import "./Notifications.css";
 
 function Notifications() {
@@ -12,13 +14,7 @@ function Notifications() {
       </p>
       <form>
         <div>
-          <input
-            type="checkbox"
-            checked
-            data-toggle="toggle"
-            data-onstyle="success"
-            data-offstyle="danger"
-          />
+          <Switch color="primary" />
         </div>
       </form>
       <h2>Notificaciones Celular</h2>
@@ -29,13 +25,7 @@ function Notifications() {
       </p>
       <form>
         <div>
-          <input
-            type="checkbox"
-            checked
-            data-toggle="toggle"
-            data-onstyle="success"
-            data-offstyle="danger"
-          />
+          <Switch color="primary" />
         </div>
       </form>
     </div>

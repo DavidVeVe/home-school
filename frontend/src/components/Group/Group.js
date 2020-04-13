@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import SwipeableViews from "react-swipeable-views";
@@ -48,7 +49,8 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 500,
+    width: "100%",
+    maxWidth: 500,
     position: "relative",
     minHeight: 200,
   },
@@ -88,19 +90,31 @@ export default function Group() {
     {
       color: "primary",
       className: classes.fab,
-      icon: <AddIcon />,
+      icon: (
+        <Link to="/add-homework">
+          <AddIcon />
+        </Link>
+      ),
       label: "Add",
     },
     {
       color: "secondary",
       className: classes.fab,
-      icon: <EditIcon />,
+      icon: (
+        <Link to="/edit-homework">
+          <EditIcon />
+        </Link>
+      ),
       label: "Edit",
     },
     {
       color: "inherit",
       className: clsx(classes.fab, classes.fabGreen),
-      icon: <UpIcon />,
+      icon: (
+        <Link to="/see-homework">
+          <UpIcon />
+        </Link>
+      ),
       label: "Expand",
     },
   ];
@@ -116,9 +130,9 @@ export default function Group() {
           variant="fullWidth"
           aria-label="action tabs example"
         >
-          <Tab label="Entregadas" {...a11yProps(0)} />
-          <Tab label="Pendientes" {...a11yProps(1)} />
-          <Tab label="Reprobadas" {...a11yProps(2)} />
+          <Tab label="Entregar Tarea" {...a11yProps(0)} />
+          <Tab label="Editar Tarea" {...a11yProps(1)} />
+          <Tab label="Ver Tarea" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews

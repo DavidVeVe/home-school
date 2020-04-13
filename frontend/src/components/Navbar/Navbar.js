@@ -7,7 +7,7 @@ import "./Nav.css";
 
 function Navbar() {
   const token = true;
-  const tipoDeCuenta = "Profesor";
+  const tipoDeCuenta = "Padre";
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -99,7 +99,7 @@ function Navbar() {
         <li className="nav-item">
           <Link
             className="nav-link "
-            to="/addChild"
+            to="/add-child"
             tabIndex="-1"
             aria-disabled="true"
           >

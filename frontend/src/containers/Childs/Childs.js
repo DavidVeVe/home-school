@@ -4,10 +4,10 @@ import "./Childs.css";
 import ChildCalification from "../../components/ChildCalification/ChildCalification";
 import Footer from "../../components/Footer/Footer";
 
-function Childs() {
+function Childs(props) {
   return (
     <div>
-      <h1>Child page</h1>
+      <h1>Progeso{props.name}</h1>
 
       <img
         className="avatar1"

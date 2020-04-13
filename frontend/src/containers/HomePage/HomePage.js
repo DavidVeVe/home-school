@@ -25,7 +25,7 @@ const HomePage = (props) => {
             <SignUp />
           </section>
         ) : (
-          <TeacherPage />
+          <Parents />
         )}
       </main>
     </div>
