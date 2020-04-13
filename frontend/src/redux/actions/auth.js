@@ -2,7 +2,7 @@ import axios from 'axios';
 
 /* import * as types from './actionTypes'; */
 
-export const authUser = (type, payload) => {
+export const authUser = (type, payload, account) => {
 	return (dispatch) => {
 		let url = null;
 		if (type === 'Register') {

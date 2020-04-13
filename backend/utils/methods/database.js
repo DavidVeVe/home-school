@@ -1,15 +1,9 @@
 const User = require('../../database/authSchema');
 
 const newUser = async (userData, hashedPassword) => {
-	const { fullname, email, phone, state, country, account } = userData;
 	const user = new User({
-		fullname,
-		email,
+		...userData,
 		password: hashedPassword,
-		phone,
-		state,
-		country,
-		account,
 	});
 	await user.save();
 };

@@ -40,7 +40,7 @@ function SignUp(props) {
 							value={registerUser.firstname}
 							onChange={handleRegisterUser}
 							required
-							name='fistname'
+							name='firstname'
 							placeholder='Nombre'
 							type='text'
 							className='form-control nameInput'

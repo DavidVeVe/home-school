@@ -18,8 +18,8 @@ const signInValidation = (data) => {
 
 const signUpValidation = (data) => {
 	const schema = Joi.object({
-		Firstname: Joi.string().alphanum().min(3).max(30).required(),
-		Lastname: Joi.string().alphanum().min(3).max(30).required(),
+		firstname: Joi.string().min(3).max(30).required(),
+		lastname: Joi.string().min(3).max(30).required(),
 		email: Joi.string().email({
 			minDomainSegments: 2,
 			tlds: { allow: ['com', 'net'] },
@@ -30,7 +30,6 @@ const signUpValidation = (data) => {
 		country: Joi.string().min(4).max(30).required(),
 		account: Joi.string().min(4).max(30).required(),
 	});
-
 	return schema.validate(data);
 };
 
