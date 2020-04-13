@@ -84,22 +84,20 @@ function Navbar(props) {
 		);
 	}
 
-	return (
-		<nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
-			<button
-				className='navbar-toggler'
-				type='button'
-				data-toggle='collapse'
-				data-target='#navbarTogglerDemo03'
-				aria-controls='navbarTogglerDemo03'
-				aria-expanded='false'
-				aria-label='Toggle navigation'>
-				<span className='navbar-toggler-icon'></span>
-			</button>
-			<a className='navbar-brand' href='/'>
-				Navbar
-			</a>
+  return (
+    <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
+      <button
+        className='navbar-toggler'
+        type='button'
+        data-toggle='collapse'
+        data-target='#navbarTogglerDemo03'
+        aria-controls='navbarTogglerDemo03'
+        aria-expanded='false'
+        aria-label='Toggle navigation'>
+        <span className='navbar-toggler-icon'></span>
+      </button>
 
+<<<<<<< HEAD
 			<div className='collapse navbar-collapse' id='navbarTogglerDemo03'>
 				<ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul>
 				{/* <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul> */}
@@ -109,6 +107,15 @@ function Navbar(props) {
 			</div>
 		</nav>
 	);
+=======
+      <div className='collapse navbar-collapse' id='navbarTogglerDemo03'>
+        <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul>
+        {/* <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul> */}
+        <form className='form-inline my-2 my-lg-0'>{navbar_components}</form>
+      </div>
+    </nav>
+  );
+>>>>>>> b3dd8b2203ebc7ec0efa5df336933316b243c400
 }
 
 const mapStateToProps = (state) => ({

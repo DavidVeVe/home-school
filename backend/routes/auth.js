@@ -50,11 +50,11 @@ authRouter.post('/login', verifySignInData, async (req, res) => {
 
 /* 
 authRouter.get('/', verifyToken, async (req, res) => {
-	const token = req.header('Cookie');
-	const newToken = token.substring(11, token.length);
-	const { email } = await jwt.decode(newToken, process.env.SECRET_TOKEN);
-	const userData = await findUser({ type: 'email', payload: email });
-	res.send(userData);
+  const token = req.header('Cookie');
+  const newToken = token.substring(11, token.length);
+  const { email } = await jwt.decode(newToken, process.env.SECRET_TOKEN);
+  const userData = await findUser({ type: 'email', payload: email });
+  res.send(userData);
 });
  */
 
