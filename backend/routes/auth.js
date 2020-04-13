@@ -29,7 +29,7 @@ authRouter.post('/register', verifySignUpData, async (req, res) => {
     const userData = req.body;
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     await newUser(userData, hashedPassword);
-    res.send('Done');
+    res.send('Register Done');
   } catch (err) {
     console.log(err);
     res.status(500).send({ err });

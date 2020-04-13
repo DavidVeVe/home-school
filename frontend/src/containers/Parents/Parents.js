@@ -1,6 +1,9 @@
 import React from "react";
-import "./Parents.css";
+
+import Classes from "../CreateClass/Calendar/Calendar";
+
 import CardChild from "./CardChild/CardChild";
+import "./Parents.css";
 
 function Parents() {
   const listaHijos = [
@@ -38,7 +41,7 @@ function Parents() {
     <>
       <div className="container">
         <header className="jumbotron my-4">
-          <h1 className="display-3">Welcome!</h1>
+          <h1 className="display-flex justify-content-center">Welcome!</h1>
           <img
             className="parent-avatar"
             src="https://image.flaticon.com/icons/svg/483/483361.svg"

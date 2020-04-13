@@ -14,6 +14,7 @@ import AddChild from "./containers/AddChild/AddChild";
 import Settings from "./containers/Settings/Settings";
 
 import store from "./redux/configStore";
+import Group from "./components/Group/Group";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <div className="App">
           <Navbar />
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={Group} />
             <Route path="/create-class" component={CreateClass} />
             <Route path="/addChild" component={AddChild} />
             <Route path="/settings" component={Settings} />

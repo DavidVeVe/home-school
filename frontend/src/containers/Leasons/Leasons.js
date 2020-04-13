@@ -31,7 +31,7 @@ function Leasons(props) {
   ];
 
   const ClassList = clases.map((clase) => (
-    <Leason key={clase.id} profesor={clase.profesor} />
+    <Leason key={clase.id} profesor={clase.profesor} group={clase.nombre} />
   ));
 
   return (

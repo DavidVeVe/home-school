@@ -1,13 +1,9 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const Leason = (props) => {
   return (
     <div className="card">
-      {/* <img
-						className='card-img-top'
-						src='../../assets/b83a511108a246a9f3dd0243fae48ed4.png'
-						alt='Card image cap'
-					/> */}
       <div className="card-body">
         <h5 className="card-title">{props.profesor}</h5>
         <p className="card-text">
@@ -18,8 +14,11 @@ const Leason = (props) => {
           <small className="text-muted">Last updated 3 mins ago </small>
         </p>
       </div>
+      {/*       <Link to={`${props.match.url}/${props.group}`}>
+        <button>Ver grupo</button>
+      </Link> */}
     </div>
   );
 };
 
-export default Leason;
+export default withRouter(Leason);

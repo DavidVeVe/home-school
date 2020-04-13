@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Logo from "../../assets/mainLogo (1).svg";
 
 import "./Nav.css";
 
 function Navbar() {
   const token = true;
-  const tipoDeCuenta = "Padre";
+  const tipoDeCuenta = "Profesor";
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -132,7 +133,7 @@ function Navbar() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-
+      <img className="main-logo" src={Logo} alt="Main Logo" />
       <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">{teacherNav}</ul>
         {/* <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul> */}

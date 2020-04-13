@@ -30,3 +30,8 @@ img {
 .SignOut:hover {
   text-decoration-line: underline;
 }
+
+.main-logo {
+  width: 60px;
+  height: 3%;
+}
