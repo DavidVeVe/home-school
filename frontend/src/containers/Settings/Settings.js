@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Link, Route, withRouter } from "react-router-dom";
 import "./Settings.css";
 import Profile from "../../components/Profile/Profile";
+import Suscription from "../../components/Suscription/Suscription";
+import Notifications from "../../components/Notifications/Notifications";
 
 function Settings(props) {
   return (
@@ -15,12 +17,18 @@ function Settings(props) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/suscription" className="nav-link">
+            <Link
+              to={`${props.match.url}/suscription`}
+              className="nav-link active"
+            >
               Suscripcion
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/notificacion" className="nav-link">
+            <Link
+              to={`${props.match.url}/notifications`}
+              className="nav-link active"
+            >
               Notificaciones
             </Link>
           </li>
@@ -28,8 +36,14 @@ function Settings(props) {
       </div>
       <Switch>
         <Route path={`${props.match.url}/profile`} component={Profile} />
-        {/*        <Route path="/suscription" component={} />
-        <Route path="/noti" /> */}
+        <Route
+          path={`${props.match.url}/suscription`}
+          component={Suscription}
+        />
+        <Route
+          path={`${props.match.url}/notifications`}
+          component={Notifications}
+        />
       </Switch>
     </div>
   );

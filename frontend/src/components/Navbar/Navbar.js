@@ -1,130 +1,163 @@
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
-import * as actions from '../../redux/actions/auth';
+const drawerWidth = 240;
 
-import './Nav.css';
+const useStyles = makeStyles((theme) => ({
+	root: {
+		display: 'flex',
+	},
+	appBar: {
+		transition: theme.transitions.create(['margin', 'width'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+	},
+	appBarShift: {
+		width: `calc(100% - ${drawerWidth}px)`,
+		marginLeft: drawerWidth,
+		transition: theme.transitions.create(['margin', 'width'], {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	hide: {
+		display: 'none',
+	},
+	drawer: {
+		width: drawerWidth,
+		flexShrink: 0,
+	},
+	drawerPaper: {
+		width: drawerWidth,
+	},
+	drawerHeader: {
+		display: 'flex',
+		alignItems: 'center',
+		padding: theme.spacing(0, 1),
+		// necessary for content to be below app bar
+		...theme.mixins.toolbar,
+		justifyContent: 'flex-end',
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3),
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		marginLeft: -drawerWidth,
+	},
+	contentShift: {
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+		marginLeft: 0,
+	},
+}));
 
-function Navbar(props) {
-	const [loginData, setLoginData] = useState({
-		email: '',
-		password: '',
-	});
+export default function PersistentDrawerLeft() {
+	const classes = useStyles();
+	const theme = useTheme();
+	const [open, setOpen] = React.useState(false);
 
-	const handleLoginInput = (event) => {
-		event.persist();
-		setLoginData((prevState) => ({
-			...prevState,
-			[event.target.name]: event.target.value,
-		}));
+	const handleDrawerOpen = () => {
+		setOpen(true);
 	};
 
-	const handleSubmitData = (event) => {
-		event.preventDefault();
-		props.authUser('Login', loginData);
+	const handleDrawerClose = () => {
+		setOpen(false);
 	};
 
-	let navbar_components = null;
-	if (!props.token) {
-		navbar_components = (
-			<Fragment>
-				<input
-					onChange={handleLoginInput}
-					value={loginData.email}
-					className='form-control mr-sm-2'
-					type='text'
-					name='email'
-					placeholder='Email*'
-					aria-label='Search'
-				/>
-				<input
-					onChange={handleLoginInput}
-					className='form-control mr-sm-2'
-					value={loginData.password}
-					type='password'
-					name='password'
-					placeholder='Password*'
-					aria-label='Search'
-				/>
-				<button className='btn btn-dark my-2 my-sm-0'>Iniciar Sesion</button>
-			</Fragment>
-		);
-	}
-
-	let teacherNav = null;
-	if (props.account === 'Profesor') {
-		teacherNav = (
-			<Fragment>
-				<li className='nav-item'>
-					<img className='avatar' src='' alt='AVATAR' />
-				</li>
-				<li className='nav-item'>
-					<h3 className='text-white h5'>NOMBRE PROFESOR</h3>
-				</li>
-				<li className='nav-item'>
-					<Link
-						className='nav-link '
-						to='/create-class'
-						tabIndex='-1'
-						aria-disabled='true'>
-						Crear clase
-					</Link>
-				</li>
-				<li className='nav-item'>
-					<Link
-						className='nav-link SignOut'
-						to='/'
-						tabIndex='-1'
-						aria-disabled='true'>
-						Sign Out
-					</Link>
-				</li>
-			</Fragment>
-		);
-	}
-
-  return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
-      <button
-        className='navbar-toggler'
-        type='button'
-        data-toggle='collapse'
-        data-target='#navbarTogglerDemo03'
-        aria-controls='navbarTogglerDemo03'
-        aria-expanded='false'
-        aria-label='Toggle navigation'>
-        <span className='navbar-toggler-icon'></span>
-      </button>
-
-<<<<<<< HEAD
-			<div className='collapse navbar-collapse' id='navbarTogglerDemo03'>
-				<ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul>
-				{/* <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul> */}
-				<form onSubmit={handleSubmitData} className='form-inline my-2 my-lg-0'>
-					{navbar_components}
-				</form>
-			</div>
-		</nav>
+	return (
+		<div className={classes.root}>
+			<CssBaseline />
+			<AppBar
+				position='fixed'
+				className={clsx(classes.appBar, {
+					[classes.appBarShift]: open,
+				})}>
+				<Toolbar>
+					<IconButton
+						color='inherit'
+						aria-label='open drawer'
+						onClick={handleDrawerOpen}
+						edge='start'
+						className={clsx(classes.menuButton, open && classes.hide)}>
+						<MenuIcon />
+					</IconButton>
+					<Typography variant='h6' noWrap>
+						Persistent drawer
+					</Typography>
+				</Toolbar>
+			</AppBar>
+			<Drawer
+				className={classes.drawer}
+				variant='persistent'
+				anchor='left'
+				open={open}
+				classes={{
+					paper: classes.drawerPaper,
+				}}>
+				<div className={classes.drawerHeader}>
+					<IconButton onClick={handleDrawerClose}>
+						{theme.direction === 'ltr' ? (
+							<ChevronLeftIcon />
+						) : (
+							<ChevronRightIcon />
+						)}
+					</IconButton>
+				</div>
+				<Divider />
+				<List>
+					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+						<ListItem button key={text}>
+							<ListItemIcon>
+								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+							</ListItemIcon>
+							<ListItemText primary={text} />
+						</ListItem>
+					))}
+				</List>
+				<Divider />
+				<List>
+					{['All mail', 'Trash', 'Spam'].map((text, index) => (
+						<ListItem button key={text}>
+							<ListItemIcon>
+								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+							</ListItemIcon>
+							<ListItemText primary={text} />
+						</ListItem>
+					))}
+				</List>
+			</Drawer>
+			<main
+				className={clsx(classes.content, {
+					[classes.contentShift]: open,
+				})}>
+				<div className={classes.drawerHeader} />
+			</main>
+		</div>
 	);
-=======
-      <div className='collapse navbar-collapse' id='navbarTogglerDemo03'>
-        <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul>
-        {/* <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>{teacherNav}</ul> */}
-        <form className='form-inline my-2 my-lg-0'>{navbar_components}</form>
-      </div>
-    </nav>
-  );
->>>>>>> b3dd8b2203ebc7ec0efa5df336933316b243c400
 }
-
-const mapStateToProps = (state) => ({
-	account: false,
-	token: state.auth.token,
-});
-
-const mapDispatchToProps = {
-	authUser: actions.authUser,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -34,7 +34,7 @@ function Profile() {
           <input type="text" className="form-control" id="inputCity" />
         </div>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-success">
         Guardar
       </button>
     </form>
