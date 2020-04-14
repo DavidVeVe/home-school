@@ -15,6 +15,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import UpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { green } from "@material-ui/core/colors";
 import Box from "@material-ui/core/Box";
+import CompleteCard from "../Delivered/CompleteCard/CompleteCard";
+import NewCards from "../See/NewCards/NewCards";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -141,13 +143,13 @@ export default function Group() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
+          <CompleteCard />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          Edita
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          <NewCards />
         </TabPanel>
       </SwipeableViews>
       {fabs.map((fab, index) => (

@@ -21,7 +21,7 @@ const {
   verifySignInData,
   verifySignUpData,
 } = require('../utils/middlewares/verifyData');
-const verifyToken = require('../utils/middlewares/verifyToken');
+/* const verifyToken = require('../utils/middlewares/verifyToken'); */
 const { findUser } = require('../utils/methods/database');
 
 authRouter.post('/register', verifySignUpData, async (req, res) => {
@@ -37,10 +37,38 @@ authRouter.post('/register', verifySignUpData, async (req, res) => {
 });
 
 authRouter.post('/login', verifySignInData, async (req, res) => {
+<<<<<<< HEAD
   const token = jwt.sign(req.body, process.env.SECRET_TOKEN);
   res.cookie('auth_token', token).send('Hello, you are logged in');
+=======
+	const { email } = req.body;
+	const user = await findUser({ type: 'email', payload: email });
+	console.log(user);
+	try {
+		if (user.account === 'Parent') {
+			const token = jwt.sign(
+				{ ...req.body, account: 'Parent' },
+				process.env.SECRET_TOKEN
+			);
+			return res
+				.cookie('auth_token', token)
+				.send(await jwt.decode(token, process.env.SECRET_TOKEN));
+		} else if (user.account === 'Teacher') {
+			const token = jwt.sign(
+				{ ...req.body, account: 'Teacher' },
+				process.env.SECRET_TOKEN
+			);
+			return res
+				.cookie('auth_token', token)
+				.send(await jwt.decode(token, process.env.SECRET_TOKEN));
+		}
+	} catch (error) {
+		return res.send('An error has ocurred');
+	}
+>>>>>>> 6e3ef4e4f6ed13b2927778e0d5dcf0dcb650cfd2
 });
 
+/* 
 authRouter.get('/', verifyToken, async (req, res) => {
 <<<<<<< HEAD
 	const token = req.header('Cookie');
@@ -57,5 +85,6 @@ authRouter.get('/', verifyToken, async (req, res) => {
   res.send(userData);
 >>>>>>> 87f89eb705752ed61028c36808a984913ad8ccdb
 });
+ */
 
 module.exports = authRouter;

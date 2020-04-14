@@ -1,7 +1,9 @@
 import React from "react";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
-export default function Switches() {
+export default function SwitchLabels() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -12,32 +14,35 @@ export default function Switches() {
   };
 
   return (
-    <div>
-      <Switch
-        checked={state.checkedA}
-        onChange={handleChange}
-        name="checkedA"
-        inputProps={{ "aria-label": "secondary checkbox" }}
+    <FormGroup row>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+          />
+        }
+        label="Secondary"
       />
-      <Switch
-        checked={state.checkedB}
-        onChange={handleChange}
-        color="primary"
-        name="checkedB"
-        inputProps={{ "aria-label": "primary checkbox" }}
+      <FormControlLabel
+        control={
+          <Switch
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="Primary"
       />
-      <Switch inputProps={{ "aria-label": "primary checkbox" }} />
-      <Switch disabled inputProps={{ "aria-label": "disabled checkbox" }} />
-      <Switch
+      <FormControlLabel control={<Switch />} label="Uncontrolled" />
+      <FormControlLabel disabled control={<Switch />} label="Disabled" />
+      <FormControlLabel
         disabled
-        checked
-        inputProps={{ "aria-label": "primary checkbox" }}
+        control={<Switch checked />}
+        label="Disabled"
       />
-      <Switch
-        defaultChecked
-        color="default"
-        inputProps={{ "aria-label": "checkbox with default color" }}
-      />
-    </div>
+    </FormGroup>
   );
 }

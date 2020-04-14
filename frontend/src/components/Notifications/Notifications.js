@@ -3,7 +3,7 @@ import Switch from "@material-ui/core/Switch";
 
 import "./Notifications.css";
 
-function Notifications() {
+function Notifications(props) {
   return (
     <div className="notificaciones">
       <h2>Notificaciones por Email</h2>
@@ -14,7 +14,12 @@ function Notifications() {
       </p>
       <form>
         <div>
-          <Switch color="primary" />
+          <Switch
+            checked={props.checkedA}
+            onChange={props.handleChange}
+            name="checkedA"
+            color="primary"
+          />
         </div>
       </form>
       <h2>Notificaciones Celular</h2>
@@ -25,7 +30,12 @@ function Notifications() {
       </p>
       <form>
         <div>
-          <Switch color="primary" />
+          <Switch
+            checked={props.checkedB}
+            onChange={props.handleChange}
+            name="checkedB"
+            color="primary"
+          />
         </div>
       </form>
     </div>

@@ -27,7 +27,13 @@ const ChildCalification = (props) => {
         <Group />
       </div>
       <div className="mixed-chart">
-        <Chart options={options} series={series} type="bar" width="105%" />
+        <Chart
+          options={options}
+          series={series}
+          type="bar"
+          maxWidth="500"
+          width="105%"
+        />
       </div>
     </div>
   );

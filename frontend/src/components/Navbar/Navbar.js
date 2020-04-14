@@ -143,8 +143,15 @@ function Navbar() {
   );
 }
 
-/* const mapStateToProps = (state) => {};
+/* const mapStateToProps = (state) => ({
+  account: false,
+  token: state.auth.token,
+});
+ */
+/* const mapDispatchToProps = {
+  authUser: actions.authUser,
+}; */
 
-const mapDispatchToProps = {}; */
+/* (mapStateToProps, mapDispatchToProps) */
 
-export default connect(null, null)(Navbar);
+export default Navbar;

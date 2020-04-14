@@ -1,7 +1,5 @@
 import React from "react";
 
-import Classes from "../CreateClass/Calendar/Calendar";
-
 import CardChild from "./CardChild/CardChild";
 import "./Parents.css";
 
