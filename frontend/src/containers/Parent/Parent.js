@@ -1,37 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import CardChild from "./CardChild/CardChild";
-import "./Parents.css";
+import "./Parent.css";
 
-function Parents() {
-  const listaHijos = [
-    {
-      id: 1,
-      nombre: "Ricardo",
-      grupo: "A",
-      materias: ["español", "matematicas"],
-    },
-    {
-      id: 2,
-      nombre: "Jordi",
-      grupo: "A",
-      materias: ["español", "matematicas"],
-    },
-    {
-      id: 3,
-      nombre: "Pepe",
-      grupo: "A",
-      materias: ["español", "matematicas"],
-    },
-    {
-      id: 4,
-      nombre: "Carlitos",
-      grupo: "A",
-      materias: ["español", "matematicas"],
-    },
-  ];
-
-  const ChildList = listaHijos.map((child) => (
+function Parents(props) {
+  const ChildList = props.childList.map((child) => (
     <CardChild key={child.id} name={child.nombre} />
   ));
 
@@ -58,4 +32,8 @@ function Parents() {
   );
 }
 
-export default Parents;
+const mapStateToProps = (state) => ({
+  childList: [],
+});
+
+export default connect(mapStateToProps)(Parents);
