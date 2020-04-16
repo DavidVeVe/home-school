@@ -21,7 +21,18 @@ export const authUser = (type, payload) => {
 				);
 		} else if (type === 'Login') {
 			url = 'http://localhost:3001/login';
-			axios.post(url, payload).then((response) => console.log(response));
+			axios
+				.post(url, payload)
+				.then((response) => {
+					console.log(response);
+					return dispatch({
+						type: types.LOGIN_USER_SUCCESS,
+						payload: response.data._doc,
+					});
+				})
+				.catch((error) =>
+					dispatch({ type: types.LOGIN_USER_ERROR, payload: error })
+				);
 		}
 	};
 };

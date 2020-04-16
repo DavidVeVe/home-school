@@ -1,7 +1,9 @@
 import React from "react";
+import Switch from "@material-ui/core/Switch";
+
 import "./Notifications.css";
 
-function Notifications() {
+function Notifications(props) {
   return (
     <div className="notificaciones">
       <h2>Notificaciones por Email</h2>
@@ -12,12 +14,11 @@ function Notifications() {
       </p>
       <form>
         <div>
-          <input
-            type="checkbox"
-            checked
-            data-toggle="toggle"
-            data-onstyle="success"
-            data-offstyle="danger"
+          <Switch
+            checked={props.checkedA}
+            onChange={props.handleChange}
+            name="checkedA"
+            color="primary"
           />
         </div>
       </form>
@@ -29,12 +30,11 @@ function Notifications() {
       </p>
       <form>
         <div>
-          <input
-            type="checkbox"
-            checked
-            data-toggle="toggle"
-            data-onstyle="success"
-            data-offstyle="danger"
+          <Switch
+            checked={props.checkedB}
+            onChange={props.handleChange}
+            name="checkedB"
+            color="primary"
           />
         </div>
       </form>

@@ -1,10 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions/';
+import { authUser } from '../../redux/actions/';
 
 import './SignUp.css';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SignUpTeacher from './SignUpTeacher/SignUpTeacher';
 import SignUpParent from './SignUpParent/SignUpParent';
@@ -19,7 +18,7 @@ function SignUp(props) {
 		phone: '',
 	});
 
-	const [typeAccount, setTypeAccount] = useState('');
+	const [typeAccount, setTypeAccount] = useState('Teacher');
 
 	const handleRegisterUser = (event) => {
 		event.persist();
@@ -54,54 +53,23 @@ function SignUp(props) {
 			password: '',
 			phone: '',
 		});
-		setTypeAccount('');
 		setTeacherCCT('');
 	};
 
-	const useStyles = makeStyles((theme) => ({
-		root: {
-			'& > *': {
-				margin: theme.spacing(1),
-			},
-		},
-	}));
-
-	const classes = useStyles();
-
-	let signUpForm = (
-		<div className={classes.root}>
-			<Button
-				name='account'
-				onClick={() => setTypeAccount('Teacher')}
-				variant='contained'
-				color='primary'>
-				Profesor
-			</Button>
-			<Button
-				name='account'
-				onClick={() => setTypeAccount('Parent')}
-				variant='contained'
-				color='secondary'>
-				Padre
-			</Button>
-		</div>
-	);
-
+	let signUpForm = null;
 	if (typeAccount === 'Parent') {
 		signUpForm = (
-			<Fragment>
-				<button onClick={cleanInputs}>Go Back</button>
+			<div className='signUp-Parent'>
 				<SignUpParent
 					handleRegisterUser={handleRegisterUser}
 					registerUser={registerUser}
 					handleSubmitAuth={handleSubmitAuth}
 				/>
-			</Fragment>
+			</div>
 		);
 	} else if (typeAccount === 'Teacher') {
 		signUpForm = (
-			<Fragment>
-				<button onClick={cleanInputs}>Go Back</button>
+			<div className='signUp-Teacher'>
 				<SignUpTeacher
 					teacherCCT={teacherCCT}
 					handleTeacherCTT={handleTeacherCTT}
@@ -109,20 +77,40 @@ function SignUp(props) {
 					registerUser={registerUser}
 					handleSubmitAuth={handleSubmitAuth}
 				/>
-			</Fragment>
+			</div>
 		);
 	}
+
 	return (
-		<Fragment>
-			<h1>Crea una cuenta</h1>
-			<h5>Es rápido y fácil</h5>
+		<div className='SignUp'>
+			<h1>Registrate</h1>
+			<Button
+				name='account'
+				onClick={() => {
+					cleanInputs();
+					setTypeAccount('Teacher');
+				}}
+				variant='contained'
+				color='secondary'>
+				Profesor
+			</Button>{' '}
+			<Button
+				name='account'
+				onClick={() => {
+					cleanInputs();
+					setTypeAccount('Parent');
+				}}
+				variant='contained'
+				color='secondary'>
+				Padre
+			</Button>
 			{signUpForm}
-		</Fragment>
+		</div>
 	);
 }
 
 const mapDispatchToProps = {
-	authUser: actions.authUser,
+	authUser,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

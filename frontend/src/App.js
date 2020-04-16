@@ -6,15 +6,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 import Navbar from './components/Navbar/Navbar';
-import CreateClass from './containers/CreateClass/CreateClass';
+import CreateClass from './components/CreateClass/CreateClass';
 import Home from './containers/Home/Home';
 import Leasons from './containers/Leasons/Leasons';
 import Childs from './containers/Childs/Childs';
-import AddChild from './containers/AddChild/AddChild';
+import AddChild from './containers/Childs/AddChild/AddChild';
 import Settings from './containers/Settings/Settings';
 
 import store from './redux/configStore';
-import Group from './components/Group/Group';
+import Footer from './components/UI/Footer/Footer';
 
 function App() {
 	return (
@@ -30,6 +30,7 @@ function App() {
 						<Route path='/leasons' component={Leasons} />
 						<Route path='/:child' component={Childs} />
 					</Switch>
+					<Footer />
 				</div>
 			</Router>
 		</Provider>

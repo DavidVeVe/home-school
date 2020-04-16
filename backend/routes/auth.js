@@ -14,37 +14,24 @@ router.post('/register', verifySignUpData, async (req, res) => {
 		const user = await newUser(userData, hashedPassword);
 		const token = jwt.sign({ ...user }, process.env.SECRET_TOKEN);
 		res
-			.cookie('auth_token', token, { httpOnly: true })
+			.cookie('auth_token', token)
 			.send(await jwt.decode(token, process.env.SECRET_TOKEN));
 	} catch (err) {
 		console.log(err);
-		res.status(500).send('TIENES UN ERROR JOBEN');
+		res.status(500).send('An error has ocurred');
 	}
 });
 
 router.post('/login', verifySignInData, async (req, res) => {
 	const { email } = req.body;
-	const user = await findUser({ type: 'email', payload: email });
 	try {
-		if (user.account === 'Parent') {
-			const token = jwt.sign(
-				{ ...req.body, account: 'Parent' },
-				process.env.SECRET_TOKEN
-			);
-			res
-				.cookie('auth_token', token)
-				.send(await jwt.decode(token, process.env.SECRET_TOKEN));
-		} else if (user.account === 'Teacher') {
-			const token = jwt.sign(
-				{ ...req.body, account: 'Teacher' },
-				process.env.SECRET_TOKEN
-			);
-			res
-				.cookie('auth_token', token)
-				.send(await jwt.decode(token, process.env.SECRET_TOKEN));
-		}
+		const user = await findUser({ type: 'email', payload: email });
+		const token = jwt.sign({ ...user }, process.env.SECRET_TOKEN);
+		res
+			.cookie('auth_token', token)
+			.send(await jwt.decode(token, process.env.SECRET_TOKEN));
 	} catch (error) {
-		res.send('An error has ocurred');
+		res.status(500).send('An error has ocurred');
 	}
 });
 

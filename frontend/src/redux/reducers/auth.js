@@ -3,7 +3,6 @@ import * as types from '../actions/actionTypes';
 const initialState = {
 	userData: null,
 	error: false,
-	loading: true,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -16,6 +15,18 @@ export default function authReducer(state = initialState, action) {
 			};
 
 		case types.REGISTER_USER_ERROR:
+			return {
+				...state,
+				error: payload,
+			};
+
+		case types.LOGIN_USER_SUCCESS:
+			return {
+				...state,
+				userData: payload,
+			};
+
+		case types.LOGIN_USER_ERROR:
 			return {
 				...state,
 				error: payload,

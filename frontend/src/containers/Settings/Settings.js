@@ -1,9 +1,11 @@
 import React from "react";
 import { Switch, Link, Route, withRouter } from "react-router-dom";
-import "./Settings.css";
+
 import Profile from "../../components/Profile/Profile";
 import Suscription from "../../components/Suscription/Suscription";
 import Notifications from "../../components/Notifications/Notifications";
+
+import "./Settings.css";
 
 function Settings(props) {
   return (

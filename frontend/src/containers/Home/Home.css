@@ -1,46 +1,24 @@
-body {
-  background-color: #e9ebee;
-  min-height: 100vh;
-  font-family: "Nunito Sans", sans-serif;
+.Main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	animation: changeAspect 0.5s forwards;
 }
 
-.homePage {
-  width: 100%;
-  display: flex;
-  margin-top: 2rem;
+@media (max-width: 1240px) {
+	.Main {
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
 }
 
-input.form-control {
-  box-shadow: 4px 2px 3px rgba(0, 0, 0, 0.5);
-  outline: none !important;
-}
-
-.homepage main {
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.homeAvatar {
-  display: flex;
-  flex-flow: column;
-  padding: 0rem 2rem 0 10rem;
-  width: 50%;
-}
-
-.homeAvatar h1 {
-  color: #505050;
-  font-weight: bold;
-}
-
-.homeAvatar__container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-@media (max-width: 957px) {
-  .homeAvatar {
-    padding: 0rem 2rem 0 3rem;
-  }
+@keyframes changeAspect {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
 }

@@ -20,11 +20,10 @@ const findUser = async (data) => {
 	const { type, payload } = data;
 	switch (type) {
 		case 'email':
-			if (payload.account === 'Teacher') {
-				return await Teacher.findOne({ email: payload.email });
-			} else {
-				return await Parent.findOne({ email: payload.email });
-			}
+			return (
+				(await Teacher.findOne({ email: payload })) ||
+				(await Parent.findOne({ email: payload }))
+			);
 
 		default:
 			break;

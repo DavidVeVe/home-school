@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
+import Group from "../Group/Group";
+
 import "./ChildCalification.css";
 
 const ChildCalification = (props) => {
@@ -21,8 +23,17 @@ const ChildCalification = (props) => {
 
   return (
     <div className="ChildCalification">
+      <div className="tabla-tareas">
+        <Group />
+      </div>
       <div className="mixed-chart">
-        <Chart options={options} series={series} type="bar" width="110%" />
+        <Chart
+          options={options}
+          series={series}
+          type="bar"
+          maxWidth="500"
+          width="105%"
+        />
       </div>
     </div>
   );
