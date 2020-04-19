@@ -1,98 +1,116 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { authUser } from '../../redux/actions/';
+
 import './SignUp.css';
 
-function SignUp({ onchange }) {
+import Button from '@material-ui/core/Button';
+import SignUpTeacher from './SignUpTeacher/SignUpTeacher';
+import SignUpParent from './SignUpParent/SignUpParent';
+
+function SignUp(props) {
+	const [teacherCCT, setTeacherCCT] = useState('');
+	const [registerUser, setRegisterUser] = useState({
+		firstname: '',
+		lastname: '',
+		email: '',
+		password: '',
+		phone: '',
+	});
+
+	const [typeAccount, setTypeAccount] = useState('Teacher');
+
+	const handleRegisterUser = (event) => {
+		event.persist();
+		setRegisterUser((prevState) => ({
+			...prevState,
+			[event.target.name]: event.target.value,
+		}));
+	};
+
+	const handleSubmitAuth = (event) => {
+		event.preventDefault();
+		if (typeAccount === 'Teacher') {
+			props.authUser('Register', {
+				...registerUser,
+				account: typeAccount,
+				cct: teacherCCT,
+			});
+		} else {
+			props.authUser('Register', { ...registerUser, account: typeAccount });
+		}
+	};
+
+	const handleTeacherCTT = (event) => {
+		setTeacherCCT(event.target.value);
+	};
+
+	const cleanInputs = () => {
+		setRegisterUser({
+			firstname: '',
+			lastname: '',
+			email: '',
+			password: '',
+			phone: '',
+		});
+		setTeacherCCT('');
+	};
+
+	let signUpForm = null;
+	if (typeAccount === 'Parent') {
+		signUpForm = (
+			<div className='signUp-Parent'>
+				<SignUpParent
+					handleRegisterUser={handleRegisterUser}
+					registerUser={registerUser}
+					handleSubmitAuth={handleSubmitAuth}
+				/>
+			</div>
+		);
+	} else if (typeAccount === 'Teacher') {
+		signUpForm = (
+			<div className='signUp-Teacher'>
+				<SignUpTeacher
+					teacherCCT={teacherCCT}
+					handleTeacherCTT={handleTeacherCTT}
+					handleRegisterUser={handleRegisterUser}
+					registerUser={registerUser}
+					handleSubmitAuth={handleSubmitAuth}
+				/>
+			</div>
+		);
+	}
+
 	return (
-		<Fragment>
-			<form onSubmit={(event) => event.preventDefault()}>
-				<div className='form-row'>
-					<div className='form-group col-md-6'>
-						<label htmlFor='inputEmail4'>Email</label>
-						<input type='email' className='form-control' id='inputEmail4' />
-					</div>
-					<div className='form-group col-md-6'>
-						<label htmlFor='inputPassword4'>Password</label>
-						<input
-							type='password'
-							className='form-control'
-							id='inputPassword4'
-						/>
-					</div>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='inputAddress'>Address</label>
-					<input
-						type='text'
-						className='form-control'
-						id='inputAddress'
-						placeholder='1234 Main St'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='inputAddress2'>Address 2</label>
-					<input
-						type='text'
-						className='form-control'
-						id='inputAddress2'
-						placeholder='Apartment, studio, or floor'
-					/>
-				</div>
-				<div className='form-row'>
-					<div className='form-group col-md-6'>
-						<label htmlFor='inputCity'>City</label>
-						<input type='text' className='form-control' id='inputCity' />
-					</div>
-					<div className='form-group col-md-4'>
-						<label htmlFor='inputState'>State</label>
-						<select id='inputState' className='form-control'>
-							<option>Choose...</option>
-							<option>...</option>
-						</select>
-					</div>
-					<div className='form-group col-md-2'>
-						<label htmlFor='inputZip'>Zip</label>
-						<input type='text' className='form-control' id='inputZip' />
-					</div>
-				</div>
-				<fieldset onChange={onchange} className='form-group'>
-					<div className='row'>
-						<legend className='col-form-label col-sm-2 pt-0'>
-							Tipo de cuenta
-						</legend>
-						<div className='col-sm-10'>
-							<div className='form-check'>
-								<input
-									className='form-check-input'
-									type='radio'
-									name='gridRadios'
-									id='gridRadios1'
-									value='Profesor'
-								/>
-								<label className='form-check-label' htmlFor='gridRadios1'>
-									Profesor
-								</label>
-							</div>
-							<div className='form-check'>
-								<input
-									className='form-check-input'
-									type='radio'
-									name='gridRadios'
-									id='gridRadios2'
-									value='Padre'
-								/>
-								<label className='form-check-label' htmlFor='gridRadios2'>
-									Padre
-								</label>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-				<button type='submit' className='btn btn-primary'>
-					Sign in
-				</button>
-			</form>
-		</Fragment>
+		<div className='SignUp'>
+			<h1>Registrate</h1>
+			<Button
+				name='account'
+				onClick={() => {
+					cleanInputs();
+					setTypeAccount('Teacher');
+				}}
+				variant='contained'
+				color='secondary'>
+				Profesor
+			</Button>{' '}
+			<Button
+				name='account'
+				onClick={() => {
+					cleanInputs();
+					setTypeAccount('Parent');
+				}}
+				variant='contained'
+				color='secondary'>
+				Padre
+			</Button>
+			{signUpForm}
+		</div>
 	);
 }
 
-export default SignUp;
+const mapDispatchToProps = {
+	authUser,
+};
+
+export default connect(null, mapDispatchToProps)(SignUp);
