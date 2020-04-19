@@ -1,14 +1,25 @@
 const bcrypt = require('bcrypt');
 const { findUser } = require('../methods/database');
-const { signUp, signIn } = require('../auth/schemaValidation');
+const {
+	signUpParents,
+	signUpTeachers,
+	signIn,
+} = require('../auth/schemaValidation');
 
 const verifySignUpData = async (req, res, next) => {
-	const { error, value } = signUp(req.body);
-	if (error) return res.status(500).send(error.details[0].message);
-
+	const { account } = req.body;
+	const { value, error } =
+		account === 'Parent' ? signUpParents(req.body) : signUpTeachers(req.body);
+	if (error) return res.status(500).send('TIENES EL ERROR EN VERIFYDATA JOVEN');
 	const { email } = value;
-	if (await findUser({ type: 'email', payload: email }))
+	if (
+		await findUser({
+			type: 'email',
+			payload: { email, account: value.account },
+		})
+	)
 		return res.status(404).send('Email already used');
+
 	next();
 };
 

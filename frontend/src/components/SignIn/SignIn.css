@@ -1,0 +1,14 @@
+.SignIn {
+	color: #ffe7aa;
+	height: 550px;
+}
+
+.SignIn img {
+	width: 100px;
+}
+
+.form-control {
+	margin: auto;
+	width: 500px;
+	min-width: 500px;
+}
