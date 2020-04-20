@@ -1,11 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/UI/Navbar/Navbar';
 import CreateClass from './components/CreateClass/CreateClass';
 import Home from './containers/Home/Home';
 import Leasons from './containers/Leasons/Leasons';
@@ -28,7 +33,7 @@ function App() {
 						<Route path='/addChild' component={AddChild} />
 						<Route path='/settings' component={Settings} />
 						<Route path='/leasons' component={Leasons} />
-						<Route path='/:child' component={Childs} />
+						<Route render={() => <Redirect path='/' />} />
 					</Switch>
 					<Footer />
 				</div>

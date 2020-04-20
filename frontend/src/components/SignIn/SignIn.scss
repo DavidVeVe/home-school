@@ -1,0 +1,28 @@
+.SignIn {
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	margin-right: 50px;
+	color: #000;
+	height: 500px;
+	border: 3px solid #a5a5a5;
+	.entry {
+		color: #fff;
+		h3 {
+			font-weight: 300;
+		}
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		border: 3px solid #a5a5a5;
+		background-color: #a5a5a5;
+	}
+}
+
+.SignIn img {
+	width: 100px;
+}
+
+.form-control {
+	margin: auto;
+	width: 500px;
+	min-width: 500px;
+}

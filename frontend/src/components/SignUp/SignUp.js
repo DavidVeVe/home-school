@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { authUser } from '../../redux/actions/';
 
-import './SignUp.css';
+import './SignUp.scss';
 
 import Button from '@material-ui/core/Button';
 import SignUpTeacher from './SignUpTeacher/SignUpTeacher';
@@ -83,7 +83,7 @@ function SignUp(props) {
 
 	return (
 		<div className='SignUp'>
-			<h1>Registrate</h1>
+			<h2>Registrate</h2>
 			<Button
 				name='account'
 				onClick={() => {
@@ -105,6 +105,15 @@ function SignUp(props) {
 				Padre
 			</Button>
 			{signUpForm}
+			<p>
+				¿Ya tienes cuenta?, Logeate!{' '}
+				<Button
+					onClick={() => props.change('Login')}
+					variant='contained'
+					color='secondary'>
+					Iniciar Sesion
+				</Button>
+			</p>
 		</div>
 	);
 }

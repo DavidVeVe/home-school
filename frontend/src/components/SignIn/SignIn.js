@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authUser } from '../../redux/actions/';
+import Button from '@material-ui/core/Button';
 
 import Logo from '../../assets/images/react-2.svg';
-import './SignIn.css';
+import './SignIn.scss';
 
 function SignIn(props) {
 	const [loginUser, setLoginUser] = useState({
@@ -27,12 +28,11 @@ function SignIn(props) {
 
 	return (
 		<div className='SignIn'>
+			<div className='entry'>
+				<h3>Iniciar Sesion</h3>
+			</div>
 			<div>
 				<img src={Logo} alt='' />
-			</div>
-			<div className='entry'>
-				<h3>Sign In</h3>
-				<p>Hi there!! Nice to see you again</p>
 			</div>
 			<form onSubmit={handleUserLogin}>
 				<div className='form-group'>
@@ -53,9 +53,30 @@ function SignIn(props) {
 						type='password'
 						required
 					/>
-					<button className='btn btn-primary btn-lg m-3 custom'>
-						Inicia Sesion
-					</button>
+					<Button
+						onClick={handleUserLogin}
+						style={{ margin: '10px 0' }}
+						name='account'
+						variant='contained'
+						color='primary'>
+						Entrar
+					</Button>
+					<p style={{ margin: '0' }}>¿No tienes una cuenta? !Que esperas!</p>
+					<Button
+						style={{ margin: '10px 0' }}
+						onClick={() => props.change('Registrar')}
+						variant='contained'
+						color='primary'>
+						Crear Cuenta
+					</Button>
+					<p style={{ margin: '0' }}>Click aqui si olvidaste tu contraseña</p>
+					<Button
+						style={{ margin: '10px 0' }}
+						name='account'
+						variant='contained'
+						color='secondary'>
+						Cambiar Contraseña
+					</Button>
 				</div>
 			</form>
 		</div>

@@ -1,7 +1,26 @@
 .Main {
+	margin-top: 50px;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	animation: changeAspect 0.5s forwards;
+}
+
+.HomepageInfo {
+	color: #000;
+	.Homepage-title {
+		margin-bottom: 50px;
+		h1 {
+			text-transform: uppercase;
+			font-weight: lighter;
+			margin: 0;
+		}
+	}
+	.Homepage-subtitle {
+		h2 {
+			font-weight: lighter;
+		}
+		margin-bottom: 50px;
+	}
 }
 
 @media (max-width: 1240px) {
