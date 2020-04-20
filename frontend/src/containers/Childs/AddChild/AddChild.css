@@ -1,0 +1,8 @@
+.child-header {
+  color: white;
+}
+
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiInput-input {
+  text-align: start;
+  padding-left: 12px;
+}

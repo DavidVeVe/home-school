@@ -9,24 +9,26 @@ import Teacher from '../Teacher/Teacher';
 import Parent from '../Parent/Parent';
 
 const HomePage = (props) => {
-	let MainPage = (
-		<Fragment>
-			<SignIn />
-			<SignUp />
-		</Fragment>
-	);
+  let MainPage = (
+    <Fragment>
+      <SignIn />
+      <SignUp />
+    </Fragment>
+  );
 
-	if (props.userData && props.userData.account === 'Parent') {
-		MainPage = <Parent />;
-	} else if (props.userData && props.userData.account === 'Teacher') {
-		MainPage = <Teacher />;
-	}
+  if (props.userData && props.userData.account === 'Parent') {
+    MainPage = <Parent />;
+  } else if (props.userData && props.userData.account === 'Teacher') {
+    MainPage = <Teacher />;
+  }
 
-	return <main className='Main'>{MainPage}</main>;
+  return <main className='Main'>{MainPage}</main>;
 };
 
 const mapStateToProps = (state) => ({
-	userData: state.auth.userData,
+  userData: {
+    account: 'Parent',
+  },
 });
 
 export default connect(mapStateToProps)(HomePage);
