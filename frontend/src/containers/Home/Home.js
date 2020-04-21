@@ -40,7 +40,11 @@ const HomePage = (props) => {
 	);
 
 	if (props.userData && props.userData.account === 'Parent') {
-		MainPage = <Parent />;
+		MainPage = (
+			<>
+				<Parent />
+			</>
+		);
 	} else if (props.userData && props.userData.account === 'Teacher') {
 		MainPage = <Teacher />;
 	}

@@ -14,8 +14,6 @@ import Navbar from './components/UI/Navbar/Navbar';
 import CreateClass from './components/CreateClass/CreateClass';
 import Home from './containers/Home/Home';
 import Leasons from './containers/Leasons/Leasons';
-import Childs from './containers/Childs/Childs';
-import AddChild from './containers/Childs/AddChild/AddChild';
 import Settings from './containers/Settings/Settings';
 
 import store from './redux/configStore';
@@ -30,7 +28,6 @@ function App() {
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Route path='/create-class' component={CreateClass} />
-						<Route path='/addChild' component={AddChild} />
 						<Route path='/settings' component={Settings} />
 						<Route path='/leasons' component={Leasons} />
 						<Route render={() => <Redirect path='/' />} />
