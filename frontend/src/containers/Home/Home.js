@@ -1,18 +1,23 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { validateUser } from '../../redux/actions/auth';
 
 import './Home.scss';
 
 import SignUp from '../../components/SignUp/SignUp';
-import SignIn from '../../components/SignIn/SignIn';
+import Login from '../../components/Login/Login';
 import Teacher from '../Teacher/Teacher';
 import Parent from '../Parent/Parent';
 
-const HomePage = (props) => {
+const HomePage = ({ validateUser, ...props }) => {
 	const [actualForm, setActualForm] = useState('Login');
 
+	useEffect(() => {
+		validateUser();
+	}, [validateUser]);
+
 	let MainPage = (
-		<Fragment>
+		<div className='Main'>
 			<div className='HomepageInfo'>
 				<div className='Homepage-title'>
 					<h1>Home School</h1>
@@ -32,11 +37,11 @@ const HomePage = (props) => {
 				</div>
 			</div>
 			{actualForm === 'Login' ? (
-				<SignIn change={setActualForm} />
+				<Login change={setActualForm} />
 			) : (
 				<SignUp change={setActualForm} />
 			)}
-		</Fragment>
+		</div>
 	);
 
 	if (props.userData && props.userData.account === 'Parent') {
@@ -49,11 +54,15 @@ const HomePage = (props) => {
 		MainPage = <Teacher />;
 	}
 
-	return <main className='Main'>{MainPage}</main>;
+	return <main>{MainPage}</main>;
 };
 
 const mapStateToProps = (state) => ({
 	userData: state.auth.userData,
 });
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = {
+	validateUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

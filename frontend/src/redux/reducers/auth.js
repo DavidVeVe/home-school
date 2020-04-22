@@ -31,6 +31,18 @@ export default function authReducer(state = initialState, action) {
 				...state,
 				error: payload,
 			};
+
+		case types.LOGOUT_USER_SUCCESS:
+			return {
+				...state,
+				userData: null,
+			};
+
+		case types.VALIDATE_USER:
+			return {
+				...state,
+				userData: payload,
+			};
 		default:
 			return state;
 	}

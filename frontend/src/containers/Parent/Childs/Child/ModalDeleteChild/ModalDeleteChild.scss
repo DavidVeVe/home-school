@@ -1,0 +1,18 @@
+.deleteChild {
+	background-color: #fff;
+	width: 600px;
+	height: 150px;
+	h2 {
+		padding-top: 20px;
+		text-align: center;
+		font-size: 30px;
+	}
+	.buttons {
+		padding-top: 20px;
+		display: flex;
+		justify-content: center;
+		button {
+			margin: 0 15px;
+		}
+	}
+}

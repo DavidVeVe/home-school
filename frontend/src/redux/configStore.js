@@ -3,15 +3,18 @@ import thunk from 'redux-thunk';
 import authReducer from './reducers/auth';
 import childReducer from './reducers/child';
 
-const rootReducer = combineReducers({ auth: authReducer, child: childReducer });
+const rootReducer = combineReducers({
+	auth: authReducer,
+	childs: childReducer,
+});
 
 export default function configureStore(initialState) {
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
+	const composeEnhancers =
+		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
 
-  return createStore(
-    rootReducer,
-    initialState,
-    composeEnhancers(applyMiddleware(thunk))
-  );
+	return createStore(
+		rootReducer,
+		initialState,
+		composeEnhancers(applyMiddleware(thunk))
+	);
 }
