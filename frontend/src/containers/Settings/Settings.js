@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Link, Route, withRouter } from "react-router-dom";
+import { Switch, NavLink, Route, withRouter } from "react-router-dom";
 
 import Profile from "../../components/Profile/Profile";
 import Suscription from "../../components/Suscription/Suscription";
@@ -14,25 +14,31 @@ function Settings(props) {
       <div>
         <ul className="nav nav-tabs justify-content-center">
           <li className="nav-item">
-            <Link to={`${props.match.url}/profile`} className="nav-link active">
+            <NavLink
+              activeStyle={{ backgroundColor: "blue", color: "white" }}
+              to={`${props.match.url}/profile`}
+              className="nav-link active"
+            >
               Perfil
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link
+            <NavLink
+              activeStyle={{ backgroundColor: "blue", color: "white" }}
               to={`${props.match.url}/suscription`}
               className="nav-link active"
             >
               Suscripcion
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link
+            <NavLink
+              activeStyle={{ backgroundColor: "blue", color: "white" }}
               to={`${props.match.url}/notifications`}
               className="nav-link active"
             >
               Notificaciones
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

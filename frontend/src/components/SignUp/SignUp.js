@@ -115,11 +115,11 @@ function SignUp(props) {
     );
   }
   return (
-    <Fragment>
+    <div>
       <h1>Crea una cuenta</h1>
       <h5>Es rápido y fácil</h5>
       {signUpForm}
-    </Fragment>
+    </div>
   );
 }
 
