@@ -1,0 +1,26 @@
+.addChild {
+	background-color: #fff;
+	width: 500px;
+	height: 500px;
+	margin: auto;
+	min-width: 300px;
+	h2 {
+		text-align: center;
+		padding-top: 20px;
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		input {
+			width: 80%;
+			margin: 10px auto;
+			border-radius: 8px;
+			border: 1px solid #202020;
+			padding: 10px;
+		}
+		button {
+			width: 50%;
+			margin: 10px auto;
+		}
+	}
+}

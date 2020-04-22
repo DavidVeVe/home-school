@@ -1,24 +1,36 @@
-const User = require("../../database/authSchema");
+const { Parent, Teacher } = require('../../database/index');
 
 const newUser = async (userData, hashedPassword) => {
-  const user = new User({
-    ...userData,
-    password: hashedPassword,
-  });
-  await user.save();
+	if (userData.account === 'Parent') {
+		const parent = new Parent({
+			...userData,
+			password: hashedPassword,
+		});
+		return await parent.save();
+	} else {
+		const teacher = new Teacher({
+			...userData,
+			password: hashedPassword,
+		});
+		return await teacher.save();
+	}
 };
 
 const findUser = async (data) => {
-  const { type, payload } = data;
-  switch (type) {
-    case "email":
-      return await User.findOne({ email: payload });
-    default:
-      break;
-  }
+	const { type, payload } = data;
+	switch (type) {
+		case 'email':
+			return (
+				(await Teacher.findOne({ email: payload })) ||
+				(await Parent.findOne({ email: payload }))
+			);
+
+		default:
+			break;
+	}
 };
 
 module.exports = {
-  newUser,
-  findUser,
+	newUser,
+	findUser,
 };

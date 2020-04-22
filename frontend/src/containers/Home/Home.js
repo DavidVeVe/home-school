@@ -1,86 +1,68 @@
-import React, { useEffect, useState, Fragment } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { validateUser } from '../../redux/actions/auth';
 
-import "./Home.css";
+import './Home.scss';
 
-import SignUp from "../../components/SignUp/SignUp";
-import Teacher from "../Teacher/Teacher";
-import Parent from "../Parent/Parent";
-import SignIn from "../../components/SignIn/SignIn";
-import Button from "@material-ui/core/Button";
+import SignUp from '../../components/SignUp/SignUp';
+import Login from '../../components/Login/Login';
+import Teacher from '../Teacher/Teacher';
+import Parent from '../Parent/Parent';
 
-const HomePage = (props) => {
-  const [sign, setSign] = useState("");
+const HomePage = ({ validateUser, ...props }) => {
+	const [actualForm, setActualForm] = useState('Login');
 
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
+	useEffect(() => {
+		validateUser();
+	}, [validateUser]);
 
-  let typeSign = (
-    <div className="home">
-      <h1>Inicia sesion</h1>
-      <Button
-        onClick={() => setSign("SignIn")}
-        variant="contained"
-        color="secondary"
-      >
-        Iniciar Sesion
-      </Button>
+	let MainPage = (
+		<div className='Main'>
+			<div className='HomepageInfo'>
+				<div className='Homepage-title'>
+					<h1>Home School</h1>
+					<p>Smart School Manager</p>
+				</div>
+				<div className='Homepage-subtitle'>
+					<h2>Padres</h2>
+					<p>Monitorea el desempeño academico de tu hijo.</p>
+					<p>Detalle de su progreso en cada materia y tareas.</p>
+					<p>Manejo inteligente de multiples perfiles de hijos.</p>
+				</div>
+				<div className='Homepage-subtitle'>
+					<h2>Profesores</h2>
+					<p>Programa efectivamente clases y contenidos.</p>
+					<p>Publica tareas y calificaciones con facilidad.</p>
+					<p>Comunicacion inmediata con tus alumnos.</p>
+				</div>
+			</div>
+			{actualForm === 'Login' ? (
+				<Login change={setActualForm} />
+			) : (
+				<SignUp change={setActualForm} />
+			)}
+		</div>
+	);
 
-      <h1>Registrate</h1>
-      <Button
-        name="SignUp"
-        onClick={() => setSign("SignUp")}
-        variant="contained"
-        color="secondary"
-      >
-        Registrate
-      </Button>
-    </div>
-  );
+	if (props.userData && props.userData.account === 'Parent') {
+		MainPage = (
+			<>
+				<Parent />
+			</>
+		);
+	} else if (props.userData && props.userData.account === 'Teacher') {
+		MainPage = <Teacher />;
+	}
 
-  if (props.userData === null && sign === "SignIn") {
-    typeSign = (
-      <div className="signIn">
-        <SignIn />
-        <Button
-          onClick={() => setSign("SignUp")}
-          variant="contained"
-          color="secondary"
-        >
-          Registrate
-        </Button>
-      </div>
-    );
-  } else if (props.userData === null && sign === "SignUp") {
-    typeSign = (
-      <div className="Pre-Sign">
-        <SignUp />
-        <h1>Ya tienes cuenta?</h1>
-        <Button
-          onClick={() => setSign("SignIn")}
-          variant="contained"
-          color="secondary"
-        >
-          Inicia Sesion!
-        </Button>
-      </div>
-    );
-  }
-
-  let typeHome = null;
-  if (props.userData && props.userData.account === "Teacher") {
-    typeHome = <Teacher />;
-  } else if (props.userData && props.userData.account === "Parent") {
-    console.log("WORKING?");
-    typeHome = <Parent />;
-  }
-
-  return <main>{typeSign}</main>;
+	return <main>{MainPage}</main>;
 };
 
 const mapStateToProps = (state) => ({
-  userData: state.auth.userData,
+	userData: state.auth.userData,
 });
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = {
+	validateUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

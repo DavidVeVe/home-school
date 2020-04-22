@@ -1,0 +1,43 @@
+.Main {
+	margin-top: 50px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	animation: changeAspect 0.5s forwards;
+}
+
+.HomepageInfo {
+	color: #000;
+	.Homepage-title {
+		margin-bottom: 50px;
+		h1 {
+			text-transform: uppercase;
+			font-weight: lighter;
+			margin: 0;
+		}
+	}
+	.Homepage-subtitle {
+		h2 {
+			font-weight: lighter;
+		}
+		margin-bottom: 50px;
+	}
+}
+
+@media (max-width: 1240px) {
+	.Main {
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
+}
+
+@keyframes changeAspect {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

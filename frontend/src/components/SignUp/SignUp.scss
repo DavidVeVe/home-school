@@ -1,0 +1,130 @@
+@mixin borderTopLeftAndRight {
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border: 3px solid #a5a5a5;
+}
+
+.SignUp {
+	@include borderTopLeftAndRight();
+	margin-right: 50px;
+	color: #000;
+	height: 500px;
+	h2 {
+		margin: 0 0 10px;
+		font-weight: lighter;
+		@include borderTopLeftAndRight();
+		color: #fff;
+		background-color: #a5a5a5;
+	}
+}
+
+.SignUp img {
+	width: 100px;
+}
+
+.form-control {
+	margin: auto;
+	width: 500px;
+	min-width: 500px;
+}
+
+.homeForm__container {
+	width: 40%;
+	padding: 0rem 7rem 0 4rem;
+	/* margin-top: 2rem; */
+}
+
+.homeForm__container input {
+	height: 45px;
+	margin-right: 5px;
+}
+
+.homeForm__container h1 {
+	font-weight: bold;
+	color: #505050;
+}
+
+.homeForm__container h1,
+.homeForm__container h5 {
+	margin: 2px 0;
+	text-align: left;
+}
+
+.homeForm__container h5 {
+	font-weight: normal;
+	margin-bottom: 1rem;
+	color: #585858;
+}
+
+.homeForm {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.homeForm div {
+	margin: 5px;
+}
+.nameInput {
+	width: 99%;
+}
+
+.phoneInput {
+	width: 47%;
+}
+
+.cityInput {
+	width: 47%;
+}
+
+.emailInput {
+	width: 97%;
+}
+
+.passwordInput {
+	width: 47%;
+}
+
+.checks__container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+.checks__container div {
+	width: 20%;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.checks__container label {
+	margin: 0;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #666666;
+}
+
+.checks__container input {
+	width: 1rem;
+}
+
+.signup__btn {
+	margin-left: 220px;
+	width: 100%;
+}
+
+.signUp-Parent {
+	color: white;
+	margin: auto;
+	width: 100%;
+	max-width: 700px;
+}
+
+.signUp-Teacher {
+	color: white;
+	margin: auto;
+	width: 100%;
+	max-width: 700px;
+}

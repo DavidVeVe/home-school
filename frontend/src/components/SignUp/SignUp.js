@@ -1,10 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../redux/actions/";
+import { authUser } from "../../redux/actions/";
 
-import "./SignUp.css";
+import "./SignUp.scss";
 
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SignUpTeacher from "./SignUpTeacher/SignUpTeacher";
 import SignUpParent from "./SignUpParent/SignUpParent";
@@ -19,7 +18,7 @@ function SignUp(props) {
     phone: "",
   });
 
-  const [typeAccount, setTypeAccount] = useState("");
+  const [typeAccount, setTypeAccount] = useState("Teacher");
 
   const handleRegisterUser = (event) => {
     event.persist();
@@ -54,45 +53,13 @@ function SignUp(props) {
       password: "",
       phone: "",
     });
-    setTypeAccount("");
     setTeacherCCT("");
   };
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
-
-  const classes = useStyles();
-
-  let signUpForm = (
-    <div className={classes.root}>
-      <Button
-        name="account"
-        onClick={() => setTypeAccount("Teacher")}
-        variant="contained"
-        color="secondary"
-      >
-        Profesor
-      </Button>
-      <Button
-        name="account"
-        onClick={() => setTypeAccount("Parent")}
-        variant="contained"
-        color="secondary"
-      >
-        Padre
-      </Button>
-    </div>
-  );
-
+  let signUpForm = null;
   if (typeAccount === "Parent") {
     signUpForm = (
       <div className="signUp-Parent">
-        <button onClick={cleanInputs}>Go Back</button>
         <SignUpParent
           handleRegisterUser={handleRegisterUser}
           registerUser={registerUser}
@@ -103,7 +70,6 @@ function SignUp(props) {
   } else if (typeAccount === "Teacher") {
     signUpForm = (
       <div className="signUp-Teacher">
-        <button onClick={cleanInputs}>Go Back</button>
         <SignUpTeacher
           teacherCCT={teacherCCT}
           handleTeacherCTT={handleTeacherCTT}
@@ -114,17 +80,49 @@ function SignUp(props) {
       </div>
     );
   }
+
   return (
-    <div>
-      <h1>Crea una cuenta</h1>
-      <h5>Es rápido y fácil</h5>
+    <div className="SignUp">
+      <h2>Registrate</h2>
+      <Button
+        name="account"
+        onClick={() => {
+          cleanInputs();
+          setTypeAccount("Teacher");
+        }}
+        variant="contained"
+        color="secondary"
+      >
+        Profesor
+      </Button>{" "}
+      <Button
+        name="account"
+        onClick={() => {
+          cleanInputs();
+          setTypeAccount("Parent");
+        }}
+        variant="contained"
+        color="secondary"
+      >
+        Padre
+      </Button>
       {signUpForm}
+      <p>
+        ¿Ya tienes cuenta?, Logeate!{" "}
+        <Button
+          onClick={() => props.change("Login")}
+          variant="contained"
+          color="secondary"
+        >
+          Iniciar Sesion
+        </Button>
+      </p>
     </div>
   );
 }
 
 const mapDispatchToProps = {
-  authUser: actions.authUser,
+  authUser,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);
