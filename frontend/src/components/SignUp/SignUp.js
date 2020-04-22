@@ -1,140 +1,125 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions/';
+import { authUser } from '../../redux/actions/';
 
-import './SignUp.css';
+import './SignUp.scss';
+
+import Button from '@material-ui/core/Button';
+import SignUpTeacher from './SignUpTeacher/SignUpTeacher';
+import SignUpParent from './SignUpParent/SignUpParent';
 
 function SignUp(props) {
-	const [userData, setUserData] = useState({
-		fullname: '',
+	const [teacherCCT, setTeacherCCT] = useState('');
+	const [registerUser, setRegisterUser] = useState({
+		firstname: '',
+		lastname: '',
 		email: '',
 		password: '',
 		phone: '',
-		state: '',
-		country: '',
-		account: '',
 	});
 
-	const handleUserData = (event) => {
-		setUserData((prevState) => ({
+	const [typeAccount, setTypeAccount] = useState('Teacher');
+
+	const handleRegisterUser = (event) => {
+		event.persist();
+		setRegisterUser((prevState) => ({
 			...prevState,
 			[event.target.name]: event.target.value,
 		}));
 	};
 
-	const handleRegisterUser = (event) => {
+	const handleSubmitAuth = (event) => {
 		event.preventDefault();
-		props.authRegisterUser(userData);
+		if (typeAccount === 'Teacher') {
+			props.authUser('Register', {
+				...registerUser,
+				account: typeAccount,
+				cct: teacherCCT,
+			});
+		} else {
+			props.authUser('Register', { ...registerUser, account: typeAccount });
+		}
 	};
 
-	return (
-		<form onSubmit={handleRegisterUser}>
-			<div className='form-row'>
-				<div className='form-group col-md-4'>
-					<label htmlFor='inputEmail4'>Nombre Completo</label>
-					<input
-						onChange={handleUserData}
-						required
-						value={userData.fullname}
-						type='email'
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group col-md-4'>
-					<label htmlFor='inputEmail4'>Correo Electronico</label>
-					<input
-						onChange={handleUserData}
-						required
-						value={userData.email}
-						type='email'
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group col-md-4'>
-					<label htmlFor='inputPassword4'>Contraseña</label>
-					<input
-						onChange={handleUserData}
-						required
-						value={userData.password}
-						type='password'
-						className='form-control'
-						id='inputPassword4'
-					/>
-				</div>
-				<div className='form-group col-md-4'>
-					<label htmlFor='inputPassword4'>Numero Telefonico</label>
-					<input
-						onChange={handleUserData}
-						required
-						value={userData.phone}
-						type='password'
-						className='form-control'
-						id='inputPassword4'
-					/>
-				</div>
-				<div className='form-group col-md-4'>
-					<label htmlFor='inputPassword4'>Estado</label>
-					<input
-						onChange={handleUserData}
-						required
-						value={userData.state}
-						type='password'
-						className='form-control'
-						id='inputPassword4'
-					/>
-				</div>
-				<div className='form-group col-md-4'>
-					<label htmlFor='inputPassword4'>Municipio</label>
-					<input
-						onChange={handleUserData}
-						required
-						value={userData.country}
-						type='password'
-						className='form-control'
-						id='inputPassword4'
-					/>
-				</div>
+	const handleTeacherCTT = (event) => {
+		setTeacherCCT(event.target.value);
+	};
+
+	const cleanInputs = () => {
+		setRegisterUser({
+			firstname: '',
+			lastname: '',
+			email: '',
+			password: '',
+			phone: '',
+		});
+		setTeacherCCT('');
+	};
+
+	let signUpForm = null;
+	if (typeAccount === 'Parent') {
+		signUpForm = (
+			<div className='signUp-Parent'>
+				<SignUpParent
+					handleRegisterUser={handleRegisterUser}
+					registerUser={registerUser}
+					handleSubmitAuth={handleSubmitAuth}
+				/>
 			</div>
-			<fieldset onChange={handleUserData} className='form-group'>
-				<div className='row'>
-					<legend className='col-form-label col-sm-2 pt-0'>
-						Tipo de cuenta
-					</legend>
-					<div className='col-sm-10'>
-						<div className='form-check'>
-							<input
-								className='form-check-input'
-								type='radio'
-								name='gridRadios'
-								id='gridRadios1'
-								value='Profesor'
-							/>
-							<label className='form-check-label' htmlFor='gridRadios1'>
-								Profesor
-							</label>
-						</div>
-						<div className='form-check'>
-							<input
-								className='form-check-input'
-								type='radio'
-								name='gridRadios'
-								id='gridRadios2'
-								value='Padre'
-							/>
-							<label className='form-check-label' htmlFor='gridRadios2'>
-								Padre
-							</label>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<button className='btn btn-primary'>Registrarse</button>
-		</form>
+		);
+	} else if (typeAccount === 'Teacher') {
+		signUpForm = (
+			<div className='signUp-Teacher'>
+				<SignUpTeacher
+					teacherCCT={teacherCCT}
+					handleTeacherCTT={handleTeacherCTT}
+					handleRegisterUser={handleRegisterUser}
+					registerUser={registerUser}
+					handleSubmitAuth={handleSubmitAuth}
+				/>
+			</div>
+		);
+	}
+
+	return (
+		<div className='SignUp'>
+			<h2>Registrate</h2>
+			<Button
+				name='account'
+				onClick={() => {
+					cleanInputs();
+					setTypeAccount('Teacher');
+				}}
+				variant='contained'
+				color='secondary'>
+				Profesor
+			</Button>{' '}
+			<Button
+				name='account'
+				onClick={() => {
+					cleanInputs();
+					setTypeAccount('Parent');
+				}}
+				variant='contained'
+				color='secondary'>
+				Padre
+			</Button>
+			{signUpForm}
+			<p>
+				¿Ya tienes cuenta?, Logeate!{' '}
+				<Button
+					onClick={() => props.change('Login')}
+					variant='contained'
+					color='secondary'>
+					Iniciar Sesion
+				</Button>
+			</p>
+		</div>
 	);
 }
 
 const mapDispatchToProps = {
-	authUser: actions.authUser,
+	authUser,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

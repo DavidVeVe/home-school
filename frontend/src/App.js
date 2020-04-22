@@ -1,31 +1,37 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import './App.css';
 
 import Navbar from './components/Navbar/Navbar';
-import CreateClass from './containers/CreateClass/CreateClass';
-import HomePage from './containers/HomePage/HomePage';
-import Leasons from './containers/Leasons/Leasons';
-
-import store from './redux/configStore';
+import Home from './containers/Home/Home';
 
 function App() {
 	return (
-		<Provider store={store({})}>
-			<Router>
-				<div className='App'>
-					<Navbar />
-					<Switch>
-						<Route exact path='/' component={HomePage} />
-						<Route path='/create-class' component={CreateClass} />
-						<Route path='/leasons' component={Leasons} />
-					</Switch>
-				</div>
-			</Router>
-		</Provider>
+		<Router>
+			<div className='App'>
+				<Navbar />
+				<ToastContainer
+					autoClose={3000}
+					hideProgressBar
+					position={'top-right'}
+				/>
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route render={() => <Redirect path='/' />} />
+				</Switch>
+			</div>
+		</Router>
 	);
 }
 

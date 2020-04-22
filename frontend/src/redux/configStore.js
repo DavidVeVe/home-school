@@ -1,8 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './reducers/auth';
+import childReducer from './reducers/child';
 
-const rootReducer = combineReducers({ auth: authReducer });
+const rootReducer = combineReducers({
+	auth: authReducer,
+	childs: childReducer,
+});
 
 export default function configureStore(initialState) {
 	const composeEnhancers =
