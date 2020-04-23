@@ -48,7 +48,20 @@ const signUpParentsValidation = (data) => {
 	return schema.validate(data);
 };
 
+const addChild = (data) => {
+	const schema = Joi.object({
+		firstname: Joi.string().min(3).max(30).required(),
+		lastname: Joi.string().min(3).max(30).required(),
+		age: Joi.number().min(1).required(),
+		parent: Joi.string().min(4).max(30).required(),
+		group: Joi.string().required(),
+	});
+
+	return schema.validate(data);
+};
+
 module.exports = {
+	addChild,
 	signUpTeachers: signUpTeachersValidation,
 	signUpParents: signUpParentsValidation,
 	signIn: signInValidation,

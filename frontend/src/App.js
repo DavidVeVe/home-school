@@ -1,40 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import './App.css';
 
-import Navbar from './components/UI/Navbar/Navbar';
-import CreateClass from './components/CreateClass/CreateClass';
+import Navbar from './components/Navbar/Navbar';
 import Home from './containers/Home/Home';
-import Leasons from './containers/Leasons/Leasons';
-import Childs from './containers/Childs/Childs';
-import AddChild from './containers/Childs/AddChild/AddChild';
-import Settings from './containers/Settings/Settings';
-
-import store from './redux/configStore';
-import Footer from './components/UI/Footer/Footer';
 
 function App() {
-  return (
-    <Provider store={store({})}>
-      <Router>
-        <div className='App'>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/create-class' component={CreateClass} />
-            <Route path='/addChild' component={AddChild} />
-            <Route path='/settings' component={Settings} />
-            <Route path='/leasons' component={Leasons} />
-            <Route path='/:child' component={Childs} />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
-    </Provider>
-  );
+	return (
+		<Router>
+			<div className='App'>
+				<Navbar />
+				<ToastContainer
+					autoClose={3000}
+					hideProgressBar
+					position={'top-right'}
+				/>
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route render={() => <Redirect path='/' />} />
+				</Switch>
+			</div>
+		</Router>
+	);
 }
 
 export default App;

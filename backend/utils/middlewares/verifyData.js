@@ -4,6 +4,7 @@ const {
 	signUpParents,
 	signUpTeachers,
 	signIn,
+	addChild,
 } = require('../auth/schemaValidation');
 
 const verifySignUpData = async (req, res, next) => {
@@ -38,4 +39,13 @@ const verifySignInData = async (req, res, next) => {
 	next();
 };
 
-module.exports = { verifySignUpData, verifySignInData };
+const verifyChild = async (req, res, next) => {
+	const { error, value } = addChild(req.body);
+	if (!value) {
+		return res.send('ERROR IN YOUR CHILD');
+	}
+
+	next();
+};
+
+module.exports = { verifySignUpData, verifySignInData, verifyChild };
