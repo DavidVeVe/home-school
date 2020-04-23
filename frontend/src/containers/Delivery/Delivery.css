@@ -1,0 +1,11 @@
+.delivery {
+  display: inline-block;
+  border: solid 1px black;
+  padding: 12px;
+  margin: 20px;
+  width: 72%;
+  height: auto;
+  background-color: white;
+  max-width: 720px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}

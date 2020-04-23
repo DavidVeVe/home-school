@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -7,6 +7,8 @@ import {
 	Route,
 	Redirect,
 } from 'react-router-dom';
+import { validateUser } from './redux/actions/';
+import { connect } from 'react-redux';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -15,8 +17,13 @@ import './App.css';
 
 import Navbar from './components/Navbar/Navbar';
 import Home from './containers/Home/Home';
+import Dashboard from './containers/Dashboard/Dashboard';
 
 function App() {
+	useEffect(() => {
+		validateUser();
+	}, []);
+
 	return (
 		<Router>
 			<div className='App'>
@@ -28,6 +35,7 @@ function App() {
 				/>
 				<Switch>
 					<Route exact path='/' component={Home} />
+					<Route path='/dashboard' component={Dashboard} />
 					<Route render={() => <Redirect path='/' />} />
 				</Switch>
 			</div>
@@ -35,4 +43,8 @@ function App() {
 	);
 }
 
-export default App;
+const mapDispatchToProps = {
+	validateUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);

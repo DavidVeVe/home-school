@@ -25,8 +25,9 @@ export const deleteChild = (data) => (dispatch) => {
 export const getChilds = (id) => (dispatch) => {
 	let url = 'http://localhost:3001/childs';
 	axios
-		.post(url, id)
+		.post(url, { id })
 		.then(({ data }) => {
+			console.log(data);
 			dispatch({ type: types.GET_CHILD_LIST, payload: data });
 		})
 		.catch((error) => console.error(error));

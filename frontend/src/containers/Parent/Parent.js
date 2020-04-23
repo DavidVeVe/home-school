@@ -17,10 +17,10 @@ function Parents({ getChilds, childs, userData, ...props }) {
 	});
 
 	useEffect(() => {
-		const { _id } = localStorage.getItem('userData');
+		const { _id } = JSON.parse(localStorage.getItem('userData'));
 		getChilds(_id);
 		toast.success('You are Login!');
-	}, []);
+	}, [getChilds]);
 
 	return (
 		<div className='container-md parent'>

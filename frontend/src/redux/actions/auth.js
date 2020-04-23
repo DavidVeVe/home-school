@@ -9,9 +9,8 @@ export const authUser = (type, payload) => (dispatch) => {
 		axios
 			.post(url, payload)
 			.then((data) => {
-				console.log(data);
 				localStorage.setItem('userData', data.config.data);
-				return dispatch({
+				dispatch({
 					type: types.REGISTER_USER_SUCCESS,
 					payload: JSON.parse(data.config.data),
 				});
@@ -24,7 +23,6 @@ export const authUser = (type, payload) => (dispatch) => {
 		axios
 			.post(url, payload)
 			.then((data) => {
-				console.log(data.data._doc);
 				localStorage.setItem('userData', JSON.stringify(data.data._doc));
 				return dispatch({
 					type: types.LOGIN_USER_SUCCESS,
