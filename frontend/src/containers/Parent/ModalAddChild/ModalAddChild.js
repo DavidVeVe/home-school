@@ -17,7 +17,6 @@ const ModalAddChild = ({ close, childRegister }) => {
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('userData'));
-		console.log(user);
 		setChildData((prevState) => ({
 			...prevState,
 			parent: user._id,
@@ -25,7 +24,6 @@ const ModalAddChild = ({ close, childRegister }) => {
 	}, []);
 
 	const RegisterChild = (event) => {
-		const user = localStorage.getItem('userData');
 		event.preventDefault();
 		childRegister(childData);
 		close();

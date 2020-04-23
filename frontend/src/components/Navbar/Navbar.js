@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import NavParent from './NavParent/NavParent';
 import NavTeacher from './NavTeacher/NavTeacher';
 
@@ -7,19 +9,19 @@ const Navbar = ({ user }) => {
 	let navbar = (
 		<ul className='navbar-nav mr-auto'>
 			<li className='nav-item'>
-				<a className='nav-link' href='/'>
+				<Link className='nav-link' to='/'>
 					Home <span className='sr-only'>(current)</span>
-				</a>
+				</Link>
 			</li>
 			<li className='nav-item'>
-				<a className='nav-link' href='/'>
+				<Link className='nav-link' to='/'>
 					Acerca de nosotros <span className='sr-only'>(current)</span>
-				</a>
+				</Link>
 			</li>
 			<li className='nav-item'>
-				<a className='nav-link' href='/'>
+				<Link className='nav-link' to='/'>
 					Contactanos <span className='sr-only'>(current)</span>
-				</a>
+				</Link>
 			</li>
 		</ul>
 	);

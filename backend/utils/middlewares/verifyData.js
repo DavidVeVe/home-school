@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { findUser } = require('../methods/database');
+const { Teacher, Parent } = require('../../database/index');
 const {
 	signUpParents,
 	signUpTeachers,
@@ -13,12 +13,7 @@ const verifySignUpData = async (req, res, next) => {
 		account === 'Parent' ? signUpParents(req.body) : signUpTeachers(req.body);
 	if (error) return res.status(500).send('TIENES EL ERROR EN VERIFYDATA JOVEN');
 	const { email } = value;
-	if (
-		await findUser({
-			type: 'email',
-			payload: { email, account: value.account },
-		})
-	)
+	if ((await Teacher.findOne({ email })) || (await Parent.findOne({ email })))
 		return res.status(404).send('Email already used');
 
 	next();
@@ -27,11 +22,11 @@ const verifySignUpData = async (req, res, next) => {
 const verifySignInData = async (req, res, next) => {
 	const { error, value } = signIn(req.body);
 	if (error) return res.status(500).send(error.details[0].message);
-
 	const { email, password } = value;
-	const user = await findUser({ type: 'email', payload: email });
-	if (!user) return res.status(404).send('Email is wrong');
-
+	let user = await Teacher.findOne({ email });
+	if (user === null) {
+		user = await Parent.findOne({ email });
+	}
 	if (!(await bcrypt.compare(password, user.password))) {
 		return res.status(404).send('Password is wrong');
 	}
