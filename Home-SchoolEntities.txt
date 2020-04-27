@@ -5,17 +5,66 @@ id
 Name:
 LastName:
 Email:
-child[id]
+childs: [23123123, 12432532523]
 
-parent-child:1-N
+child
+id
 id_parent
-id_child
+group: 'sdasd123123'
+asignaturas: [{name: español, entradas: 10 % 20 = calification, pendientes, noEntregadas, }, asdasda,dasda,sdas, español]
+tasks: [{
+    title: '
+    body
+    calificationClass: 9
+    entragada: pendiente > 
+}, {
+    title: '
+    body
+    calificationClass
+    entragada: null > 
+}
+{
+    title: '
+    body
+    calificationClass
+    entragada: pendiente > 
+}
+{
+    title: '
+    body
+    calificationClass
+    entragada: si > 
+}]
 
-teachers:
+teachers: {}
 id
 Name:
 LastName
 Telephone
+groups: [123123,12323,12323,12233]
+tasks: [{
+    id_child: asdasd1231231
+    title: 
+    asignatura
+    body
+    calificationClass: 7
+    entragada: entredaga > 
+}{
+    id_child: asdasd1231231
+    title: 
+    asignatura
+    body
+    calificationClass: 10
+    entragada: true > 
+}{
+    id_child: asdasdasda
+    title: 
+    asignatura
+    body
+    calificationClass: 9
+    entragada: true > 
+}]
+
 
 Email:
 cct:
@@ -23,6 +72,7 @@ cct:
 teachers-group: 1-N
 teacher_id
 group_id
+
 
 childs:
 id
@@ -42,8 +92,20 @@ State:
 City:
 
 group:
-id
+id:
+students: [asdasd,dasdasda,dasdsa]
 Name:
+materias:
+posts: [{ 
+    id_teacher: 'asdasds'
+    id_group: 123123,
+    title: 
+    asignatura
+    body
+    calificationClass: null
+    entragada: false > 
+}]
+
 
 Majors:
 id

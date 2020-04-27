@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { validateUser } from '../../redux/actions/auth';
 
 import './Home.scss';
 
@@ -11,10 +10,6 @@ import Parent from '../Parent/Parent';
 
 const HomePage = ({ validateUser, ...props }) => {
 	const [actualForm, setActualForm] = useState('Login');
-
-	useEffect(() => {
-		validateUser();
-	}, [validateUser]);
 
 	let MainPage = (
 		<div className='Main'>
@@ -61,8 +56,4 @@ const mapStateToProps = (state) => ({
 	userData: state.auth.userData,
 });
 
-const mapDispatchToProps = {
-	validateUser,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps)(HomePage);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useModal from 'react-hooks-use-modal';
 import { connect } from 'react-redux';
 
@@ -35,13 +36,25 @@ const Child = ({ child }) => {
 					to additional content. This card has even longer content than the
 					first to show that equal height action.
 				</p>
-				<Button
-					onClick={GroupOpen}
-					style={{ margin: '20px' }}
-					variant='contained'
-					color='primary'>
-					Añadir a grupo
-				</Button>
+				{child.group.length > 9 ? (
+					<Link to={`/${child.group}/dashboard`}>
+						<Button
+							onClick={GroupOpen}
+							style={{ margin: '20px' }}
+							variant='contained'
+							color='primary'>
+							Dashboard
+						</Button>
+					</Link>
+				) : (
+					<Button
+						onClick={GroupOpen}
+						style={{ margin: '20px' }}
+						variant='contained'
+						color='primary'>
+						Añadir a grupo
+					</Button>
+				)}
 				<Button onClick={open} variant='contained' color='secondary'>
 					Eliminar
 				</Button>
@@ -49,7 +62,7 @@ const Child = ({ child }) => {
 					<small className='text-muted'>Last updated 3 mins ago</small>
 				</p>
 				<ModalGroup>
-					<ModalChildGroup close={GroupClose} />
+					<ModalChildGroup childId={child._id} close={GroupClose} />
 				</ModalGroup>
 				<Modal>
 					<ModalDeleteChild

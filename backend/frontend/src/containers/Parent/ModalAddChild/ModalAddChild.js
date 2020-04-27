@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { childRegister } from '../../../redux/actions/';
+import { childRegister } from '../../../redux/actions';
 
 import './ModalAddChild.scss';
 
@@ -13,6 +13,7 @@ const ModalAddChild = ({ close, childRegister }) => {
 		age: '',
 		parent: '',
 		group: 'not group',
+		assignments: [],
 	});
 
 	useEffect(() => {

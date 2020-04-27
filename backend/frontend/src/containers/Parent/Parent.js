@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getChilds } from '../../redux/actions/';
+import { getChilds } from '../../redux/actions';
 import { toast } from 'react-toastify';
 
 import './Parent.scss';

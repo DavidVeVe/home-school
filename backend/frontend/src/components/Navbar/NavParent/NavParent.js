@@ -29,9 +29,6 @@ const NavParent = ({ logoutUser }) => {
 					Actividades
 				</Link>
 				<div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-					<Link className='dropdown-item' to='/dashboard'>
-						Dashboard
-					</Link>
 					<Link className='dropdown-item' to='/dashboard/assignments'>
 						Materias
 					</Link>

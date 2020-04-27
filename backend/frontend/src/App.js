@@ -7,7 +7,7 @@ import {
 	Route,
 	Redirect,
 } from 'react-router-dom';
-import { validateUser } from './redux/actions/';
+import { validateUser } from './redux/actions';
 import { connect } from 'react-redux';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -19,10 +19,10 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './containers/Home/Home';
 import Dashboard from './containers/Dashboard/Dashboard';
 
-function App() {
+function App({ validateUser }) {
 	useEffect(() => {
 		validateUser();
-	}, []);
+	}, [validateUser]);
 
 	return (
 		<Router>
@@ -35,7 +35,7 @@ function App() {
 				/>
 				<Switch>
 					<Route exact path='/' component={Home} />
-					<Route path='/dashboard' component={Dashboard} />
+					<Route path='/:groupId/dashboard' component={Dashboard} />
 					<Route render={() => <Redirect path='/' />} />
 				</Switch>
 			</div>

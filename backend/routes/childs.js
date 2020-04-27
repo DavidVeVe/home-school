@@ -23,7 +23,6 @@ router.delete('/child', async (req, res) => {
 
 router.post('/childs', async (req, res) => {
 	const { id } = req.body;
-	console.log(id);
 	try {
 		const childs = await Childs.find({ parent: id });
 		res.send(childs);
