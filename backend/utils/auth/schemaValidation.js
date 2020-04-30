@@ -55,6 +55,7 @@ const addChild = (data) => {
 		age: Joi.number().min(1).required(),
 		parent: Joi.string().min(4).max(30).required(),
 		group: Joi.string().required(),
+		assignmets: Joi.array().required(),
 	});
 
 	return schema.validate(data);

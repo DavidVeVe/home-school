@@ -5,6 +5,7 @@ const childsSchema = mongoose.Schema({
 	age: { type: Number, required: true },
 	parent: { type: String, required: true },
 	group: { type: String },
+	assignments: { type: Array },
 });
 
 module.exports = mongoose.model('Childs', childsSchema);

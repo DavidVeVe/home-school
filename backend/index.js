@@ -1,6 +1,8 @@
 const express = require('express');
 const authRoute = require('./routes/auth');
 const childRoute = require('./routes/childs');
+const groupRoute = require('./routes/groups');
+const postRoute = require('./routes/posts');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
@@ -25,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', authRoute);
 app.use('/', childRoute);
+app.use('/', groupRoute);
+app.use('/', postRoute);
 
 // App Listen
 app.listen(PORT, () => {
