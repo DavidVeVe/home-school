@@ -22,4 +22,4 @@ router.get('/post/:postId', function (req, res) {
 
 // tareas por materia 
 
-module.exports = router;
+module.exports = router; 
